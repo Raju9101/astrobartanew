@@ -1,43 +1,37 @@
 "use server";
 
-import {
-  astrologerMatchmaking,
-  type AstrologerMatchmakingOutput,
-} from "@/ai/flows/astrologer-matchmaking";
+import { dailyHoroscope } from "@/ai/flows/astrologer-matchmaking";
 import { z } from "zod";
 
-const MatcherSchema = z.object({
-  query: z
-    .string()
-    .min(10, {
-      message: "Please describe your question in at least 10 characters.",
-    }),
+const HoroscopeSchema = z.object({
+  zodiacSign: z.string().min(1, { message: "Please select a zodiac sign." }),
 });
 
-interface MatcherState {
-  result?: AstrologerMatchmakingOutput;
+interface HoroscopeState {
+  horoscope?: string;
+  zodiacSign?: string;
   error?: string;
 }
 
-export async function findMyAstrologer(
-  prevState: MatcherState,
+export async function getDailyHoroscope(
+  prevState: HoroscopeState,
   formData: FormData
-): Promise<MatcherState> {
-  const validatedFields = MatcherSchema.safeParse({
-    query: formData.get("query"),
+): Promise<HoroscopeState> {
+  const validatedFields = HoroscopeSchema.safeParse({
+    zodiacSign: formData.get("zodiacSign"),
   });
 
   if (!validatedFields.success) {
     return {
-      error: validatedFields.error.flatten().fieldErrors.query?.join(", "),
+      error: "Please select a valid zodiac sign.",
     };
   }
 
+  const zodiacSign = validatedFields.data.zodiacSign;
+
   try {
-    const result = await astrologerMatchmaking({
-      query: validatedFields.data.query,
-    });
-    return { result };
+    const result = await dailyHoroscope({ zodiacSign });
+    return { horoscope: result.horoscope, zodiacSign };
   } catch (e) {
     console.error(e);
     return { error: "Our cosmic signals are weak. Please try again later." };
@@ -74,7 +68,9 @@ export async function createBooking(
   });
 
   if (!validatedFields.success) {
-    const firstError = Object.values(validatedFields.error.flatten().fieldErrors).flat()[0];
+    const firstError = Object.values(
+      validatedFields.error.flatten().fieldErrors
+    ).flat()[0];
     return {
       success: false,
       message: firstError || "Invalid data. Please check your inputs.",
@@ -82,44 +78,49 @@ export async function createBooking(
   }
 
   try {
-    const res = await fetch("https://api.astrobarta.com/api/create_booking.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(validatedFields.data),
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://api.astrobarta.com/api/create_booking.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(validatedFields.data),
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
-        let errorMessage = `Server error: ${res.statusText}. Please try again.`;
-        try {
-            const errorResult = await res.json();
-            if (errorResult && errorResult.message) {
-                errorMessage = errorResult.message;
-            }
-        } catch (e) {
-            // Response body was not JSON, we'll use the statusText.
+      let errorMessage = `Server error: ${res.statusText}. Please try again.`;
+      try {
+        const errorResult = await res.json();
+        if (errorResult && errorResult.message) {
+          errorMessage = errorResult.message;
         }
-        console.error("API Error Response:", errorMessage);
-        return { success: false, message: errorMessage };
+      } catch (e) {
+        // Response body was not JSON, we'll use the statusText.
+      }
+      console.error("API Error Response:", errorMessage);
+      return { success: false, message: errorMessage };
     }
 
     // If the response is OK, we assume success.
     // Try to parse a more specific message from the response body.
     let successMessage = "Booking confirmed!";
     try {
-        const result = await res.json();
-        if (result && result.message) {
-            successMessage = result.message;
-        }
+      const result = await res.json();
+      if (result && result.message) {
+        successMessage = result.message;
+      }
     } catch (e) {
-        // Response body was empty or not JSON. That's okay, we'll use the default message.
+      // Response body was empty or not JSON. That's okay, we'll use the default message.
     }
     return { success: true, message: successMessage };
-
   } catch (e) {
     console.error(e);
-    return { success: false, message: "Our cosmic signals are weak. Please try again later." };
+    return {
+      success: false,
+      message: "Our cosmic signals are weak. Please try again later.",
+    };
   }
 }

@@ -3,54 +3,49 @@
 'use server';
 
 /**
- * @fileOverview AI agent that matches users with astrologers based on their queries.
+ * @fileOverview AI agent that generates daily horoscopes.
  *
- * - astrologerMatchmaking - A function that processes user queries and recommends astrologers.
- * - AstrologerMatchmakingInput - The input type for the astrologerMatchmaking function.
- * - AstrologerMatchmakingOutput - The return type for the astrologerMatchmaking function.
+ * - dailyHoroscope - A function that generates a daily horoscope for a given zodiac sign.
+ * - DailyHoroscopeInput - The input type for the dailyHoroscope function.
+ * - DailyHoroscopeOutput - The return type for the dailyHoroscope function.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-const AstrologerMatchmakingInputSchema = z.object({
-  query: z
+const DailyHoroscopeInputSchema = z.object({
+  zodiacSign: z
     .string()
-    .describe('The user query about astrology.'),
+    .describe('The zodiac sign for which to generate the horoscope.'),
 });
-export type AstrologerMatchmakingInput = z.infer<typeof AstrologerMatchmakingInputSchema>;
+export type DailyHoroscopeInput = z.infer<typeof DailyHoroscopeInputSchema>;
 
-const AstrologerMatchmakingOutputSchema = z.object({
-  recommendedAstrologers: z
-    .array(z.string())
-    .describe('A list of recommended astrologers with expertise in the user query.'),
-  reasoning: z.string().describe('The AI reasoning for recommending these astrologers.'),
+const DailyHoroscopeOutputSchema = z.object({
+  horoscope: z.string().describe('The generated daily horoscope text.'),
 });
-export type AstrologerMatchmakingOutput = z.infer<typeof AstrologerMatchmakingOutputSchema>;
+export type DailyHoroscopeOutput = z.infer<typeof DailyHoroscopeOutputSchema>;
 
-export async function astrologerMatchmaking(input: AstrologerMatchmakingInput): Promise<AstrologerMatchmakingOutput> {
-  return astrologerMatchmakingFlow(input);
+export async function dailyHoroscope(input: DailyHoroscopeInput): Promise<DailyHoroscopeOutput> {
+  return dailyHoroscopeFlow(input);
 }
 
 const prompt = ai.definePrompt({
-  name: 'astrologerMatchmakingPrompt',
-  input: {schema: AstrologerMatchmakingInputSchema},
-  output: {schema: AstrologerMatchmakingOutputSchema},
-  prompt: `You are an AI astrologer matchmaking assistant.
+  name: 'dailyHoroscopePrompt',
+  input: {schema: DailyHoroscopeInputSchema},
+  output: {schema: DailyHoroscopeOutputSchema},
+  prompt: `You are a mystical and insightful astrologer.
 
-You will take the user's query and return a list of astrologers that are best suited to answer the user's question.
+Generate a daily horoscope for the zodiac sign: {{{zodiacSign}}}.
 
-User Query: {{{query}}}
-
-Return a list of astrologers with expertise in the user query, and a reasoning for recommending these astrologers.
+The horoscope should be about 3-4 sentences long and cover themes like love, career, and personal growth in an encouraging and positive tone. Do not add any titles or headers.
 `,
 });
 
-const astrologerMatchmakingFlow = ai.defineFlow(
+const dailyHoroscopeFlow = ai.defineFlow(
   {
-    name: 'astrologerMatchmakingFlow',
-    inputSchema: AstrologerMatchmakingInputSchema,
-    outputSchema: AstrologerMatchmakingOutputSchema,
+    name: 'dailyHoroscopeFlow',
+    inputSchema: DailyHoroscopeInputSchema,
+    outputSchema: DailyHoroscopeOutputSchema,
   },
   async input => {
     const {output} = await prompt(input);
