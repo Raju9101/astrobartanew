@@ -17,6 +17,7 @@ import {
   Search,
   Loader2,
 } from "lucide-react";
+import Link from "next/link";
 
 interface Astrologer {
   id: number;
@@ -113,97 +114,98 @@ export function AstrologerList() {
               const isOnline = Math.random() > 0.4;
 
               return (
-                <Card
-                  key={astrologer.id}
-                  className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
-                >
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start gap-4">
-                      <div className="flex items-start gap-3 flex-1 min-w-0">
-                        <div className="flex flex-col items-center flex-shrink-0">
-                          <div className="relative">
-                            <Avatar className="w-20 h-20 border-2 border-primary/50">
-                              <AvatarImage
-                                src={`https://api.astrobarta.com/api${astrologer.profile_image}`}
-                                alt={astrologer.name}
-                              />
-                              <AvatarFallback>
-                                {astrologer.name.charAt(0)}
-                              </AvatarFallback>
-                            </Avatar>
-                            {isOnline && (
-                              <div
-                                className="absolute top-1 right-1 w-4 h-4 bg-green-500 border-2 border-background rounded-full"
-                                title="Online"
-                              ></div>
-                            )}
+                <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`} key={astrologer.id}>
+                  <Card
+                    className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 h-full"
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start gap-4">
+                        <div className="flex items-start gap-3 flex-1 min-w-0">
+                          <div className="flex flex-col items-center flex-shrink-0">
+                            <div className="relative">
+                              <Avatar className="w-20 h-20 border-2 border-primary/50">
+                                <AvatarImage
+                                  src={`https://api.astrobarta.com/api${astrologer.profile_image}`}
+                                  alt={astrologer.name}
+                                />
+                                <AvatarFallback>
+                                  {astrologer.name.charAt(0)}
+                                </AvatarFallback>
+                              </Avatar>
+                              {isOnline && (
+                                <div
+                                  className="absolute top-1 right-1 w-4 h-4 bg-green-500 border-2 border-background rounded-full"
+                                  title="Online"
+                                ></div>
+                              )}
+                            </div>
+                            <Badge
+                              variant="outline"
+                              className="mt-2 text-xs font-medium"
+                            >
+                              <Star className="w-3.5 h-3.5 mr-1 text-primary fill-current" />
+                              {rating} | {reviews}
+                            </Badge>
                           </div>
-                          <Badge
+                          <div className="flex flex-col gap-1 pt-1 flex-1 min-w-0">
+                            <h3
+                              className="font-semibold text-lg truncate"
+                              title={astrologer.name}
+                            >
+                              {astrologer.name}
+                            </h3>
+                            <div className="flex items-center gap-2 text-muted-foreground text-sm mt-1">
+                              <Languages className="w-4 h-4 flex-shrink-0" />
+                              <span className="truncate">
+                                {astrologer.language}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                              <GraduationCap className="w-4 h-4 flex-shrink-0" />
+                              <span className="truncate">
+                                {astrologer.experience}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                              <Award className="w-4 h-4 flex-shrink-0" />
+                              <span className="truncate">
+                                {astrologer.expertise}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="px-3 text-primary border-primary hover:bg-primary/10 hover:text-primary whitespace-nowrap"
+                        >
+                          + Follow
+                        </Button>
+                      </div>
+
+                      <Separator className="my-4 bg-border/50" />
+
+                      <div className="flex justify-end items-center">
+                        <div className="flex gap-2">
+                          <Button
                             variant="outline"
-                            className="mt-2 text-xs font-medium"
+                            className="text-primary border-primary hover:bg-primary/10 hover:text-primary"
                           >
-                            <Star className="w-3.5 h-3.5 mr-1 text-primary fill-current" />
-                            {rating} | {reviews}
-                          </Badge>
-                        </div>
-                        <div className="flex flex-col gap-1 pt-1 flex-1 min-w-0">
-                          <h3
-                            className="font-semibold text-lg truncate"
-                            title={astrologer.name}
+                            <CalendarDays className="mr-2 h-4 w-4" />
+                            Book
+                          </Button>
+                          <Button
+                            variant="outline"
+                            className="text-primary border-primary hover:bg-primary/10 hover:text-primary"
                           >
-                            {astrologer.name}
-                          </h3>
-                          <div className="flex items-center gap-2 text-muted-foreground text-sm mt-1">
-                            <Languages className="w-4 h-4 flex-shrink-0" />
-                            <span className="truncate">
-                              {astrologer.language}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                            <GraduationCap className="w-4 h-4 flex-shrink-0" />
-                            <span className="truncate">
-                              {astrologer.experience}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                            <Award className="w-4 h-4 flex-shrink-0" />
-                            <span className="truncate">
-                              {astrologer.expertise}
-                            </span>
-                          </div>
+                            <Phone className="mr-2 h-4 w-4" />
+                            Call
+                          </Button>
                         </div>
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="px-3 text-primary border-primary hover:bg-primary/10 hover:text-primary whitespace-nowrap"
-                      >
-                        + Follow
-                      </Button>
-                    </div>
-
-                    <Separator className="my-4 bg-border/50" />
-
-                    <div className="flex justify-end items-center">
-                      <div className="flex gap-2">
-                        <Button
-                          variant="outline"
-                          className="text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                        >
-                          <CalendarDays className="mr-2 h-4 w-4" />
-                          Book
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                        >
-                          <Phone className="mr-2 h-4 w-4" />
-                          Call
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </Link>
               );
             })}
           </div>
