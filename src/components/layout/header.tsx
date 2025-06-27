@@ -2,9 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Logo } from "@/components/logo";
 
 const navLinks = [
@@ -43,13 +48,10 @@ export function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[80vw] bg-background">
+            <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
             <div className="flex flex-col h-full">
-              <div className="flex items-center justify-between pb-4 border-b">
+              <div className="pb-4 border-b">
                 <Logo />
-                 <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
-                  <X className="h-6 w-6" />
-                  <span className="sr-only">Close menu</span>
-                </Button>
               </div>
               <nav className="flex flex-col gap-6 mt-8">
                 {navLinks.map((link) => (
