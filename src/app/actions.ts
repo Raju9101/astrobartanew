@@ -74,9 +74,10 @@ export async function createBooking(
   });
 
   if (!validatedFields.success) {
+    const firstError = Object.values(validatedFields.error.flatten().fieldErrors).flat()[0];
     return {
       success: false,
-      message: "Invalid data provided: " + validatedFields.error.flatten().fieldErrors,
+      message: firstError || "Invalid data. Please check your inputs.",
     };
   }
 
@@ -90,19 +91,33 @@ export async function createBooking(
       cache: "no-store",
     });
 
-     if (!res.ok) {
-        const errorText = await res.text();
-        console.error("API Error Response:", errorText);
-        return { success: false, message: `Server error: ${res.statusText}. Please try again.` };
+    if (!res.ok) {
+        let errorMessage = `Server error: ${res.statusText}. Please try again.`;
+        try {
+            const errorResult = await res.json();
+            if (errorResult && errorResult.message) {
+                errorMessage = errorResult.message;
+            }
+        } catch (e) {
+            // Response body was not JSON, we'll use the statusText.
+        }
+        console.error("API Error Response:", errorMessage);
+        return { success: false, message: errorMessage };
     }
 
-    const result = await res.json();
-
-    if (result.status === "success") {
-      return { success: true, message: result.message || "Booking confirmed!" };
-    } else {
-      return { success: false, message: result.message || "An error occurred during booking." };
+    // If the response is OK, we assume success.
+    // Try to parse a more specific message from the response body.
+    let successMessage = "Booking confirmed!";
+    try {
+        const result = await res.json();
+        if (result && result.message) {
+            successMessage = result.message;
+        }
+    } catch (e) {
+        // Response body was empty or not JSON. That's okay, we'll use the default message.
     }
+    return { success: true, message: successMessage };
+
   } catch (e) {
     console.error(e);
     return { success: false, message: "Our cosmic signals are weak. Please try again later." };
