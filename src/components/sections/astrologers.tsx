@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Star, Languages, GraduationCap, Award, MessageSquare, Phone } from "lucide-react";
+import { Star, Languages, GraduationCap, Award, Phone, CalendarDays } from "lucide-react";
 
 interface Astrologer {
   id: number;
@@ -91,8 +91,8 @@ export async function Astrologers() {
                 <div className="flex justify-end items-center">
                   <div className="flex gap-2">
                     <Button variant="outline" className="text-primary border-primary hover:bg-primary/10 hover:text-primary">
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      Chat
+                      <CalendarDays className="mr-2 h-4 w-4" />
+                      Book
                     </Button>
                     <Button variant="outline" className="text-primary border-primary hover:bg-primary/10 hover:text-primary">
                       <Phone className="mr-2 h-4 w-4" />
