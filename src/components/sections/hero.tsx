@@ -7,12 +7,12 @@ export function Hero() {
         aria-hidden="true"
         className="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-20"
       >
-        <div className="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
-        <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
+        <div className="blur-[106px] h-56 bg-gradient-to-br from-primary to-gradient-end"></div>
+        <div className="blur-[106px] h-32 bg-gradient-to-r from-gradient-start to-gradient-middle"></div>
       </div>
       <div className="container relative mx-auto max-w-7xl px-4 py-24 text-center sm:py-32">
         <h1 className="font-headline text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-          <span className="block bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent py-2">
+          <span className="block bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent py-2 bg-[size:200%_auto] animate-gradient">
             🌟 AstroBarta 🌟
           </span>
         </h1>

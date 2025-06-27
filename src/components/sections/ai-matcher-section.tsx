@@ -5,7 +5,7 @@ export function AIMatcherSection() {
     <section id="ai-matcher" className="container mx-auto max-w-4xl px-4 py-16 sm:py-24">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
-          <span className="bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent bg-[size:200%_auto] animate-gradient">
             Find Your Perfect Astrologer
           </span>
         </h2>
