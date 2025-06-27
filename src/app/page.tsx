@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
+import { Expertise } from "@/components/sections/expertise";
 import { Features } from "@/components/sections/features";
 import { Astrologers } from "@/components/sections/astrologers";
 import { AIMatcherSection } from "@/components/sections/ai-matcher-section";
@@ -12,6 +13,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
+        <Expertise />
         <Features />
         <Astrologers />
         <AIMatcherSection />
