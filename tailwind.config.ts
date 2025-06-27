@@ -15,9 +15,9 @@ export default {
         code: ['monospace'],
       },
       colors: {
-        'gradient-start': '#7C3AED',
-        'gradient-middle': '#3B82F6',
-        'gradient-end': '#14B8A6',
+        'gradient-start': '#FBBF24',
+        'gradient-middle': '#F97316',
+        'gradient-end': '#EA580C',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
