@@ -17,7 +17,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/50">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Logo />
         <nav className="hidden md:flex items-center gap-6 text-sm">
@@ -32,7 +32,7 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden md:flex items-center gap-2">
-          <Button variant="ghost">Sign In</Button>
+          <Button variant="outline">Sign In</Button>
           <Button className="shadow-[0_4px_14px_0_hsl(var(--secondary))] hover:shadow-[0_6px_20px_0_hsl(var(--secondary)/80%)]">Book a Reading</Button>
         </div>
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
@@ -64,7 +64,7 @@ export function Header() {
                 ))}
               </nav>
               <div className="mt-auto flex flex-col gap-4">
-                 <Button variant="ghost" size="lg">Sign In</Button>
+                 <Button variant="outline" size="lg">Sign In</Button>
                  <Button size="lg" className="shadow-[0_4px_14px_0_hsl(var(--secondary))] hover:shadow-[0_6px_20px_0_hsl(var(--secondary)/80%)]">Book a Reading</Button>
               </div>
             </div>
