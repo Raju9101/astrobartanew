@@ -52,7 +52,7 @@ export function Expertise() {
           </h2>
           <Button>View All</Button>
         </div>
-        <div className="grid grid-cols-2 gap-y-12 gap-x-4 text-center sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-3 gap-y-12 gap-x-4 text-center lg:grid-cols-6">
           {expertiseList.map((item) => (
             <Link href="#" key={item.title} className="group flex cursor-pointer flex-col items-center gap-4">
               <div className="flex h-28 w-28 items-center justify-center rounded-full border-2 border-primary/30 p-1 transition-all duration-300 group-hover:scale-105 group-hover:border-primary group-hover:bg-primary/5 group-hover:shadow-lg group-hover:shadow-primary/20">
