@@ -15,13 +15,9 @@ export default {
         code: ['monospace'],
       },
       colors: {
-        'lavender': '#D0A7F3',
-        'gold': '#F7D264',
-        'lilac': '#A5A8F5',
-        'deep-space-blue': '#1B1548',
-        'sunbeam-yellow': '#FFD600',
-        'cosmic-purple': '#3C2B74',
-        'soft-gray': '#6E6E6E',
+        'gradient-start': '#7C3AED',
+        'gradient-middle': '#3B82F6',
+        'gradient-end': '#14B8A6',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

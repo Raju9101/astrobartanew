@@ -5,47 +5,25 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 244 56% 18%;
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    --card-foreground: 244 56% 18%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 244 56% 18%;
-    --primary: 251 46% 31%; /* Cosmic Purple */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 244 56% 18%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 50 100% 95%; /* Light Yellow */
-    --accent-foreground: 244 56% 18%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 251 46% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 244 56% 18%; /* #1B1548 Deep Space Blue */
-    --foreground: 0 0% 98%;
-    --card: 251 46% 24%; /* Slightly lighter Cosmic Purple */
-    --card-foreground: 0 0% 98%;
-    --popover: 244 56% 18%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 50 100% 50%; /* #FFD600 Sunbeam Yellow */
-    --primary-foreground: 244 56% 12%; /* Darker blue for text on yellow buttons */
-    --secondary: 251 46% 31%; /* #3C2B74 Cosmic Purple */
-    --secondary-foreground: 0 0% 98%;
-    --muted: 251 46% 31%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 251 46% 40%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 251 46% 31%;
-    --input: 251 46% 31%;
-    --ring: 50 100% 50%; /* Sunbeam Yellow */
   }
 }
 

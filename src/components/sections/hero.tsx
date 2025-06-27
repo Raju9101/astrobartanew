@@ -12,7 +12,7 @@ export function Hero() {
       </div>
       <div className="container relative mx-auto max-w-7xl px-4 py-24 text-center sm:py-32">
         <h1 className="font-headline text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-          <span className="block bg-gradient-to-r from-lavender via-gold to-lilac bg-clip-text text-transparent py-2">
+          <span className="block bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent py-2">
             🌟 AstroBarta 🌟
           </span>
         </h1>
