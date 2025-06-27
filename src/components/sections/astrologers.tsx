@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Star, Languages, GraduationCap, Award, Phone, CalendarDays } from "lucide-react";
+import Link from "next/link";
 
 interface Astrologer {
   id: number;
@@ -32,7 +33,8 @@ async function getAstrologers(): Promise<Astrologer[]> {
 }
 
 export async function Astrologers() {
-  const astrologers = await getAstrologers();
+  const allAstrologers = await getAstrologers();
+  const astrologers = allAstrologers.slice(0, 6);
 
   return (
     <section id="astrologers" className="bg-background py-16 sm:py-24">
@@ -104,6 +106,13 @@ export async function Astrologers() {
             </Card>
           )})}
         </div>
+        {allAstrologers.length > 6 && (
+          <div className="mt-12 text-center">
+            <Link href="/astrologers">
+              <Button>View More</Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -14,7 +14,7 @@ import { Logo } from "@/components/logo";
 
 const navLinks = [
   { href: "#features", label: "Features" },
-  { href: "#astrologers", label: "Astrologers" },
+  { href: "/astrologers", label: "Astrologers" },
   { href: "#ai-matcher", label: "AI Matcher" },
 ];
 
