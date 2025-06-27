@@ -43,8 +43,6 @@ export async function Astrologers() {
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {astrologers.map((astrologer) => {
-            const price = Math.floor(Math.random() * 40) + 10;
-            const originalPrice = price + Math.floor(Math.random() * 20) + 5;
             const rating = (4.5 + Math.random() * 0.5).toFixed(1);
             const reviews = Math.floor(Math.random() * 1500) + 500;
             const isOnline = Math.random() > 0.4;
@@ -90,11 +88,7 @@ export async function Astrologers() {
 
                 <Separator className="my-4 bg-border/50" />
 
-                <div className="flex justify-between items-center">
-                   <div className="flex items-baseline gap-1.5">
-                      <p className="font-bold text-base text-primary">₹{price}/Min</p>
-                      {Math.random() > 0.5 && <s className="text-muted-foreground text-sm">₹{originalPrice}/Min</s>}
-                    </div>
+                <div className="flex justify-end items-center">
                   <div className="flex gap-2">
                     <Button variant="outline" className="text-primary border-primary hover:bg-primary/10 hover:text-primary">
                       <MessageSquare className="mr-2 h-4 w-4" />
