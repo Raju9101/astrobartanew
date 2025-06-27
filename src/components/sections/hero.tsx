@@ -1,6 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Volume2, VolumeX } from "lucide-react";
 
 export function Hero() {
+  const [isMuted, setIsMuted] = useState(true);
+
+  const videoSrc = `https://www.youtube.com/embed/GKISshYMv3o?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=GKISshYMv3o&controls=0`;
+
   return (
     <section className="relative overflow-hidden">
        <div
@@ -35,15 +43,24 @@ export function Hero() {
           <div className="mx-auto">
             {/* TV Frame */}
             <div className="relative bg-slate-900/70 p-2 sm:p-3 rounded-2xl shadow-2xl ring-1 ring-slate-800/50">
-              <div className="aspect-video rounded-lg overflow-hidden bg-black">
+              <div className="aspect-video rounded-lg overflow-hidden bg-black relative">
                 <iframe
-                  src="https://www.youtube.com/embed/GKISshYMv3o?autoplay=1&mute=1&loop=1&playlist=GKISshYMv3o&controls=0"
+                  src={videoSrc}
                   title="AstroBarta Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   className="w-full h-full"
                 ></iframe>
+                 <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsMuted(!isMuted)}
+                    className="absolute bottom-2 right-2 z-10 text-white/70 hover:text-white hover:bg-white/20"
+                    aria-label={isMuted ? "Unmute video" : "Mute video"}
+                  >
+                    {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+                  </Button>
               </div>
             </div>
             {/* TV Stand */}
