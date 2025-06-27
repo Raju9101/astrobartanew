@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AstrologerRatings } from "@/components/astrologer-ratings";
+import { ShareButton } from "@/components/share-button";
 
 interface Astrologer {
   id: number;
@@ -78,7 +79,10 @@ export default async function AstrologerProfilePage({
             {/* Left Column */}
             <div className="lg:col-span-2 space-y-8">
               <Card className="overflow-hidden">
-                <CardContent className="p-6">
+                <CardContent className="p-6 relative">
+                  <div className="absolute top-4 right-4">
+                    <ShareButton />
+                  </div>
                   <div className="flex flex-col sm:flex-row items-start gap-6">
                     <div className="relative flex-shrink-0">
                       <Avatar className="w-28 h-28 border-4 border-primary/50">
@@ -96,12 +100,14 @@ export default async function AstrologerProfilePage({
                       ></div>
                     </div>
                     <div className="flex-1">
-                      <h1 className="text-3xl font-bold font-headline">
-                        {astrologer.name}
-                      </h1>
-                      <p className="text-muted-foreground mt-1">
-                        {astrologer.expertise}
-                      </p>
+                      <div>
+                        <h1 className="text-3xl font-bold font-headline pr-10">
+                          {astrologer.name}
+                        </h1>
+                        <p className="text-muted-foreground mt-1">
+                          {astrologer.expertise}
+                        </p>
+                      </div>
                       <div className="flex flex-wrap gap-2 mt-4">
                         {expertiseTags.map((tag) => (
                           <Badge
