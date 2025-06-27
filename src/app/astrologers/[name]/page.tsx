@@ -3,7 +3,13 @@ import { Header } from "@/components/layout/header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import {
   CalendarDays,
@@ -176,21 +182,31 @@ export default async function AstrologerProfilePage({
 
             {/* Right Column */}
             <div className="space-y-8">
-              <Card className="bg-primary/90 text-primary-foreground">
-                <CardContent className="p-6 space-y-4">
-                  <Button
-                    size="lg"
-                    className="w-full bg-white text-primary hover:bg-white/90"
-                  >
-                    <Phone className="mr-2 h-5 w-5" /> Call Now
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full border-white text-white hover:bg-white/10"
-                  >
-                    <CalendarDays className="mr-2 h-5 w-5" /> Book Session
-                  </Button>
+              <Card className="bg-gradient-to-br from-primary via-gradient-middle to-gradient-end text-primary-foreground shadow-xl">
+                <CardHeader className="items-center text-center">
+                  <CardTitle className="text-2xl font-bold text-white">
+                    Start a Conversation
+                  </CardTitle>
+                  <CardDescription className="text-primary-foreground/90">
+                    Get instant advice or book for later.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-6 pt-2">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <Button
+                      size="lg"
+                      className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                    >
+                      <Phone className="mr-2 h-5 w-5" /> Call Now
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full border-white font-semibold text-white shadow-md transition-transform hover:scale-105 hover:bg-white/10"
+                    >
+                      <CalendarDays className="mr-2 h-5 w-5" /> Book
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
               <Card>
