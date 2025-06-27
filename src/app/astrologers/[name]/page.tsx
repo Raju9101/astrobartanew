@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import {
   CalendarDays,
   GraduationCap,
@@ -18,9 +17,9 @@ import {
   MapPin,
   Phone,
   ShieldCheck,
-  Star,
 } from "lucide-react";
 import { notFound } from "next/navigation";
+import { AstrologerRatings } from "@/components/astrologer-ratings";
 
 interface Astrologer {
   id: number;
@@ -51,22 +50,6 @@ async function getAstrologer(name: string): Promise<Astrologer | undefined> {
   }
 }
 
-// Dummy data for ratings as it is not in the API
-const getRatingData = () => {
-  const rating = (4.5 + Math.random() * 0.5).toFixed(2);
-  const reviews = Math.floor(Math.random() * 1500) + 200;
-  const distribution = [
-    Math.floor(Math.random() * 70) + 25, // 5 stars
-    Math.floor(Math.random() * 20) + 5, // 4 stars
-    Math.floor(Math.random() * 5) + 1, // 3 stars
-    Math.floor(Math.random() * 3), // 2 stars
-    Math.floor(Math.random() * 2), // 1 star
-  ];
-  const total = distribution.reduce((a, b) => a + b, 0);
-  const percentages = distribution.map((d) => Math.round((d / total) * 100));
-  return { rating, reviews, percentages };
-};
-
 export default async function AstrologerProfilePage({
   params,
 }: {
@@ -79,7 +62,6 @@ export default async function AstrologerProfilePage({
     notFound();
   }
 
-  const { rating, reviews, percentages } = getRatingData();
   const expertiseTags = [
     "Kundli Matching",
     "FlatDeal 12",
@@ -200,49 +182,15 @@ export default async function AstrologerProfilePage({
                       <Phone className="mr-2 h-5 w-5" /> Call Now
                     </Button>
                     <Button
-                      variant="outline"
                       size="lg"
-                      className="w-full border-white font-semibold text-white shadow-md transition-transform hover:scale-105 hover:bg-white/10"
+                      className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
                     >
                       <CalendarDays className="mr-2 h-5 w-5" /> Book
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Ratings</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-4">
-                    <p className="text-4xl font-bold">{rating}</p>
-                    <div className="flex flex-col">
-                      <div className="flex text-primary">
-                        <Star className="w-5 h-5 fill-current" />
-                        <Star className="w-5 h-5 fill-current" />
-                        <Star className="w-5 h-5 fill-current" />
-                        <Star className="w-5 h-5 fill-current" />
-                        <Star className="w-5 h-5" />
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {reviews} ratings
-                      </p>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    {percentages.map((p, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm">
-                        <span>{5 - i}</span>
-                        <Star className="w-4 h-4 text-primary fill-current" />
-                        <Progress value={p} className="h-2 bg-secondary" />
-                        <span className="w-8 text-right text-muted-foreground">
-                          {p}%
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <AstrologerRatings />
               <Card>
                 <CardContent className="p-4 flex items-center gap-3">
                   <ShieldCheck className="w-8 h-8 text-primary" />
