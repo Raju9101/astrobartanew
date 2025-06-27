@@ -1,8 +1,8 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { findMyAstrologer } from "@/app/actions";
-import { useEffect } from "react";
+import { useEffect, useActionState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ function SubmitButton() {
 
 export function AIMatcherForm() {
   const initialState = { message: "", error: undefined, result: undefined };
-  const [state, formAction] = useFormState(findMyAstrologer, initialState);
+  const [state, formAction] = useActionState(findMyAstrologer, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
