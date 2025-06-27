@@ -15,12 +15,14 @@ import {
   GraduationCap,
   Languages,
   MapPin,
+  PartyPopper,
   Phone,
   ShieldCheck,
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AstrologerRatings } from "@/components/astrologer-ratings";
 import { ShareButton } from "@/components/share-button";
+import { BookingDialog } from "@/components/booking-dialog";
 
 interface Astrologer {
   id: number;
@@ -171,12 +173,17 @@ export default async function AstrologerProfilePage({
                     >
                       <Phone className="mr-2 h-5 w-5" /> Call Now
                     </Button>
-                    <Button
-                      size="lg"
-                      className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                    >
-                      <CalendarDays className="mr-2 h-5 w-5" /> Book
-                    </Button>
+                     <BookingDialog
+                        astrologer={astrologer}
+                        trigger={
+                          <Button
+                            size="lg"
+                            className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                          >
+                            <CalendarDays className="mr-2 h-5 w-5" /> Book
+                          </Button>
+                        }
+                      />
                   </div>
                 </CardContent>
               </Card>
@@ -216,12 +223,17 @@ export default async function AstrologerProfilePage({
                     >
                       <Phone className="mr-2 h-5 w-5" /> Call Now
                     </Button>
-                    <Button
-                      size="lg"
-                      className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                    >
-                      <CalendarDays className="mr-2 h-5 w-5" /> Book
-                    </Button>
+                     <BookingDialog
+                        astrologer={astrologer}
+                        trigger={
+                          <Button
+                            size="lg"
+                            className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                          >
+                            <CalendarDays className="mr-2 h-5 w-5" /> Book
+                          </Button>
+                        }
+                      />
                   </div>
                 </CardContent>
               </Card>
