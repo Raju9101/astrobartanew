@@ -33,7 +33,7 @@ const astrologersList = [
 
 export function Astrologers() {
   return (
-    <section id="astrologers" className="bg-secondary/20 py-16 sm:py-24">
+    <section id="astrologers" className="bg-background py-16 sm:py-24">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">Meet Our Top Astrologers</h2>
