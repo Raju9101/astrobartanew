@@ -232,42 +232,6 @@ export default async function AstrologerProfilePage({
                 </CardContent>
               </Card>
 
-              {/* "Start a Conversation" for mobile/tablet, hidden on desktop */}
-              <div className="space-y-8 lg:hidden">
-                <Card className="bg-gradient-to-br from-primary via-gradient-middle to-gradient-end text-primary-foreground shadow-xl">
-                  <CardHeader className="items-center text-center">
-                    <CardTitle className="text-2xl font-bold text-white">
-                      Start a Conversation
-                    </CardTitle>
-                    <CardDescription className="text-primary-foreground/90">
-                      Get instant advice or book for later.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-6 pt-2">
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <Button
-                        size="lg"
-                        className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                      >
-                        <Phone className="mr-2 h-5 w-5" /> Call Now
-                      </Button>
-                      <BookingDialog
-                        astrologer={astrologer}
-                        trigger={
-                          <Button
-                            size="lg"
-                            className="w-full border-white font-semibold text-white shadow-md transition-transform hover:scale-105 hover:bg-white/10"
-                            variant="outline"
-                          >
-                            <CalendarDays className="mr-2 h-5 w-5" /> Book
-                          </Button>
-                        }
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
               <Card>
                 <CardHeader>
                   <CardTitle>About</CardTitle>
