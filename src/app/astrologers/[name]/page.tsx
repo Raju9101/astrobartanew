@@ -21,7 +21,6 @@ import {
   Star,
 } from "lucide-react";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { AstrologerRatings } from "@/components/astrologer-ratings";
 import { ShareButton } from "@/components/share-button";
 import { BookingDialog } from "@/components/booking-dialog";
@@ -222,40 +221,6 @@ export default async function AstrologerProfilePage({
                   </div>
                 </CardContent>
               </Card>
-
-              <div className="lg:hidden">
-                <Card className="bg-gradient-to-br from-primary via-gradient-middle to-gradient-end text-primary-foreground shadow-xl">
-                  <CardHeader className="items-center text-center">
-                    <CardTitle className="text-2xl font-bold text-white">
-                      Start a Conversation
-                    </CardTitle>
-                    <CardDescription className="text-primary-foreground/90">
-                      Get instant advice or book for later.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-6 pt-2">
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <Button
-                        size="lg"
-                        className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                      >
-                        <Phone className="mr-2 h-5 w-5" /> Call Now
-                      </Button>
-                      <BookingDialog
-                        astrologer={astrologer}
-                        trigger={
-                          <Button
-                            size="lg"
-                            className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                          >
-                            <CalendarDays className="mr-2 h-5 w-5" /> Book
-                          </Button>
-                        }
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
 
               <Card>
                 <CardHeader>
