@@ -78,14 +78,20 @@ export async function createBooking(
   }
 
   try {
+    // PHP scripts often expect form-urlencoded data instead of JSON.
+    const dataToSend: Record<string, string> = {};
+    for (const [key, value] of Object.entries(validatedFields.data)) {
+        dataToSend[key] = String(value);
+    }
+    const body = new URLSearchParams(dataToSend);
+
     const res = await fetch(
       "https://api.astrobarta.com/create_booking.php",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(validatedFields.data),
+        // The Content-Type header is automatically set to 'application/x-www-form-urlencoded'
+        // when using URLSearchParams as the body.
+        body: body,
         cache: "no-store",
       }
     );
