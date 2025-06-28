@@ -77,14 +77,17 @@ export function ExpertiseAstrologerList({
   }, [expertise, allAstrologers]);
 
   return (
-    <section id="astrologers-list" className="bg-background py-16 sm:py-24">
+    <section id="astrologers-list" className="bg-secondary/30 py-16 sm:py-24">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
-            Astrologers for {expertise}
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl lg:text-5xl">
+            Astrologers for{' '}
+            <span className="bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent bg-[size:200%_auto] animate-gradient">
+              {expertise}
+            </span>
           </h1>
-          <p className="mt-4 text-lg text-foreground/60">
-            Experts specializing in {expertise}.
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-foreground/70">
+            Browse our selection of top-rated astrologers who specialize in providing guidance on {expertise.toLowerCase()} matters.
           </p>
         </div>
 
@@ -102,7 +105,7 @@ export function ExpertiseAstrologerList({
               return (
                 <Card
                   key={astrologer.id}
-                  className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col"
+                  className="overflow-hidden bg-background shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col"
                 >
                   <CardContent className="p-4 flex flex-col flex-1">
                     <div className="flex justify-between items-start gap-4 flex-1">
@@ -172,37 +175,27 @@ export function ExpertiseAstrologerList({
 
                     <Separator className="my-4 bg-border/50" />
 
-                    <div className="flex justify-end items-center">
-                      <div className="flex gap-2">
-                        <Link
-                          href={`/astrologers/${encodeURIComponent(
-                            astrologer.name
-                          )}`}
-                          className="w-full"
-                        >
-                          <Button
+                    <div className="grid grid-cols-2 gap-2 mt-auto">
+                        <Button
+                            asChild
                             variant="outline"
                             className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                          >
+                        >
+                          <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`}>
                             <CalendarDays className="mr-2 h-4 w-4" />
                             Book
-                          </Button>
-                        </Link>
-                        <Link
-                          href={`/astrologers/${encodeURIComponent(
-                            astrologer.name
-                          )}`}
-                          className="w-full"
-                        >
-                          <Button
+                          </Link>
+                        </Button>
+                        <Button
+                            asChild
                             variant="outline"
                             className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                          >
+                        >
+                          <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`}>
                             <Phone className="mr-2 h-4 w-4" />
                             Call
-                          </Button>
-                        </Link>
-                      </div>
+                          </Link>
+                        </Button>
                     </div>
                   </CardContent>
                 </Card>
