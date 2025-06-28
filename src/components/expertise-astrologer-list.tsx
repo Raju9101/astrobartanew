@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { ShareButton } from "./share-button";
+import { BookingDialog } from "./booking-dialog";
 
 interface Astrologer {
   id: number;
@@ -176,16 +177,18 @@ export function ExpertiseAstrologerList({
                     <Separator className="my-4 bg-border/50" />
 
                     <div className="grid grid-cols-2 gap-2 mt-auto">
-                        <Button
-                            asChild
-                            variant="outline"
-                            className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                        >
-                          <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`}>
-                            <CalendarDays className="mr-2 h-4 w-4" />
-                            Book
-                          </Link>
-                        </Button>
+                        <BookingDialog
+                          astrologer={astrologer}
+                          trigger={
+                             <Button
+                                variant="outline"
+                                className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
+                              >
+                                <CalendarDays className="mr-2 h-4 w-4" />
+                                Book
+                              </Button>
+                          }
+                        />
                         <Button
                             asChild
                             variant="outline"

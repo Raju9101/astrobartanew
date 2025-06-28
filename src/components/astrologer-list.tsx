@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { ShareButton } from "./share-button";
+import { BookingDialog } from "./booking-dialog";
 
 interface Astrologer {
   id: number;
@@ -184,15 +185,18 @@ export function AstrologerList() {
 
                     <div className="flex justify-end items-center">
                       <div className="flex gap-2">
-                         <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`} className="w-full">
-                           <Button
-                              variant="outline"
-                              className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                            >
-                              <CalendarDays className="mr-2 h-4 w-4" />
-                              Book
-                            </Button>
-                         </Link>
+                        <BookingDialog
+                          astrologer={astrologer}
+                          trigger={
+                            <Button
+                                variant="outline"
+                                className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
+                              >
+                                <CalendarDays className="mr-2 h-4 w-4" />
+                                Book
+                              </Button>
+                          }
+                        />
                          <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`} className="w-full">
                             <Button
                               variant="outline"
