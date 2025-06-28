@@ -114,13 +114,7 @@ export default async function AstrologerProfilePage({
                               {astrologer.expertise}
                             </p>
                           </div>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="px-3 text-primary border-primary hover:bg-primary/10 hover:text-primary whitespace-nowrap h-7 text-xs"
-                          >
-                            Follow
-                          </Button>
+                          <ShareButton astrologerName={astrologer.name} />
                         </div>
                         <div className="flex items-center gap-1 mt-2">
                           <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
@@ -165,7 +159,7 @@ export default async function AstrologerProfilePage({
                   {/* Desktop View */}
                   <div className="hidden sm:block">
                     <div className="absolute top-4 right-4">
-                      <ShareButton />
+                      <ShareButton astrologerName={astrologer.name} />
                     </div>
                     <div className="flex flex-col sm:flex-row items-start gap-6">
                       <div className="relative flex-shrink-0">
@@ -237,6 +231,42 @@ export default async function AstrologerProfilePage({
                   </div>
                 </CardContent>
               </Card>
+
+              {/* "Start a Conversation" for mobile/tablet, hidden on desktop */}
+              <div className="space-y-8 lg:hidden">
+                <Card className="bg-gradient-to-br from-primary via-gradient-middle to-gradient-end text-primary-foreground shadow-xl">
+                  <CardHeader className="items-center text-center">
+                    <CardTitle className="text-2xl font-bold text-white">
+                      Start a Conversation
+                    </CardTitle>
+                    <CardDescription className="text-primary-foreground/90">
+                      Get instant advice or book for later.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-6 pt-2">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <Button
+                        size="lg"
+                        className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                      >
+                        <Phone className="mr-2 h-5 w-5" /> Call Now
+                      </Button>
+                      <BookingDialog
+                        astrologer={astrologer}
+                        trigger={
+                          <Button
+                            size="lg"
+                            className="w-full border-white font-semibold text-white shadow-md transition-transform hover:scale-105 hover:bg-white/10"
+                            variant="outline"
+                          >
+                            <CalendarDays className="mr-2 h-5 w-5" /> Book
+                          </Button>
+                        }
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
 
               <Card>
                 <CardHeader>
@@ -312,7 +342,8 @@ export default async function AstrologerProfilePage({
                       trigger={
                         <Button
                           size="lg"
-                          className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                          variant="outline"
+                          className="w-full border-white font-semibold text-white shadow-md transition-transform hover:scale-105 hover:bg-white/10"
                         >
                           <CalendarDays className="mr-2 h-5 w-5" /> Book
                         </Button>
