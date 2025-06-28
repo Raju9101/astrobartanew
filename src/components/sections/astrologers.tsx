@@ -6,10 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Star, Languages, GraduationCap, Award, Phone, CalendarDays } from "lucide-react";
+import { Star, Languages, GraduationCap, Award, Phone, CalendarDays, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { ShareButton } from "../share-button";
-import { Skeleton } from "../ui/skeleton";
 
 interface Astrologer {
   id: number;
@@ -20,55 +19,27 @@ interface Astrologer {
   profile_image: string;
 }
 
-const AstrologerSkeleton = () => (
-    <Card className="overflow-hidden shadow-md h-full flex flex-col">
-      <CardContent className="p-4 flex flex-col flex-1">
-        <div className="flex justify-between items-start gap-4 flex-1">
-          <div className="flex items-start gap-3 flex-1 min-w-0">
-            <div className="flex flex-col items-center flex-shrink-0">
-              <Skeleton className="w-20 h-20 rounded-full" />
-              <Skeleton className="h-5 w-20 mt-2" />
-            </div>
-            <div className="flex flex-col gap-2 pt-1 flex-1 min-w-0">
-              <Skeleton className="h-6 w-3/4" />
-              <Skeleton className="h-5 w-1/2 mt-1" />
-              <Skeleton className="h-5 w-1/2" />
-              <Skeleton className="h-5 w-2/3" />
-            </div>
-          </div>
-          <Skeleton className="w-8 h-8 rounded-full" />
-        </div>
-        <Separator className="my-4 bg-border/50" />
-        <div className="flex justify-end items-center">
-          <div className="flex gap-2">
-            <Skeleton className="h-10 w-24 rounded-md" />
-            <Skeleton className="h-10 w-24 rounded-md" />
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-);
-
 export function Astrologers() {
   const [allAstrologers, setAllAstrologers] = useState<Astrologer[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchAstrologers() {
       try {
         setLoading(true);
+        setError(null);
         const res = await fetch('https://api.astrobarta.com/get_astrologer.php', {
           cache: 'no-store' 
         });
         if (!res.ok) {
-          console.error('Failed to fetch astrologers:', res.statusText);
-          setAllAstrologers([]);
-        } else {
-            const data = await res.json();
-            setAllAstrologers(data.data || []);
+           throw new Error(`Failed to fetch astrologers: ${res.statusText}`);
         }
+        const data = await res.json();
+        setAllAstrologers(data.data || []);
       } catch (error) {
         console.error('Error fetching astrologers:', error);
+        setError("Our cosmic signals are weak. Please try again later.");
         setAllAstrologers([]);
       } finally {
         setLoading(false);
@@ -86,10 +57,17 @@ export function Astrologers() {
           <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">Meet Our Top Astrologers</h2>
           <p className="mt-4 text-lg text-foreground/60">Experts ready to guide you on your journey.</p>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {loading 
-            ? Array.from({ length: 6 }).map((_, index) => <AstrologerSkeleton key={index} />)
-            : astrologers.map((astrologer) => {
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 min-h-[300px]">
+          {loading ? (
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center">
+              <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            </div>
+          ) : error ? (
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center">
+               <p className="text-lg text-destructive">{error}</p>
+            </div>
+          ) : astrologers.length > 0 ? (
+            astrologers.map((astrologer) => {
                 const rating = (4.5 + Math.random() * 0.5).toFixed(1);
                 const reviews = Math.floor(Math.random() * 1500) + 500;
                 const isOnline = Math.random() > 0.4;
@@ -153,9 +131,14 @@ export function Astrologers() {
                       </div>
                     </CardContent>
                   </Card>
-              )})}
+              )})
+          ) : (
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center">
+              <p className="text-lg text-muted-foreground">No astrologers found.</p>
+            </div>
+          )}
         </div>
-        {!loading && allAstrologers.length > 6 && (
+        {!loading && !error && allAstrologers.length > 6 && (
           <div className="mt-12 text-center">
             <Link href="/astrologers">
               <Button>View More</Button>
