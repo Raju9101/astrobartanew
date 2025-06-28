@@ -78,20 +78,14 @@ export async function createBooking(
   }
 
   try {
-    // PHP scripts often expect form-urlencoded data instead of JSON.
-    const dataToSend: Record<string, string> = {};
-    for (const [key, value] of Object.entries(validatedFields.data)) {
-        dataToSend[key] = String(value);
-    }
-    const body = new URLSearchParams(dataToSend);
-
     const res = await fetch(
       "https://api.astrobarta.com/create_booking.php",
       {
         method: "POST",
-        // The Content-Type header is automatically set to 'application/x-www-form-urlencoded'
-        // when using URLSearchParams as the body.
-        body: body,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(validatedFields.data),
         cache: "no-store",
       }
     );
@@ -100,8 +94,12 @@ export async function createBooking(
       let errorMessage = `Server error: ${res.statusText}. Please try again.`;
       try {
         const errorResult = await res.json();
-        if (errorResult && errorResult.message) {
-          errorMessage = errorResult.message;
+        if (errorResult) {
+          if (errorResult.error) {
+            errorMessage = errorResult.error;
+          } else if (errorResult.errors && Array.isArray(errorResult.errors)) {
+            errorMessage = errorResult.errors.join(" ");
+          }
         }
       } catch (e) {
         // Response body was not JSON, we'll use the statusText.
@@ -110,8 +108,6 @@ export async function createBooking(
       return { success: false, message: errorMessage };
     }
 
-    // If the response is OK, we assume success.
-    // Try to parse a more specific message from the response body.
     let successMessage = "Booking confirmed!";
     try {
       const result = await res.json();
