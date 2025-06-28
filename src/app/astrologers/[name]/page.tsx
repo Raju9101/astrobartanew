@@ -15,14 +15,17 @@ import {
   GraduationCap,
   Languages,
   MapPin,
-  PartyPopper,
+  MessageSquare,
   Phone,
   ShieldCheck,
+  Star,
 } from "lucide-react";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { AstrologerRatings } from "@/components/astrologer-ratings";
 import { ShareButton } from "@/components/share-button";
 import { BookingDialog } from "@/components/booking-dialog";
+import { Separator } from "@/components/ui/separator";
 
 interface Astrologer {
   id: number;
@@ -75,115 +78,162 @@ export default async function AstrologerProfilePage({
   return (
     <div className="flex flex-col min-h-screen bg-secondary/50">
       <Header />
-      <main className="flex-1 py-8 sm:py-12">
+      <main className="flex-1 py-8 sm:py-12 pb-28 lg:pb-12">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column */}
             <div className="lg:col-span-2 space-y-8">
               <Card className="overflow-hidden">
-                <CardContent className="p-6 relative">
-                  <div className="absolute top-4 right-4">
-                    <ShareButton />
-                  </div>
-                  <div className="flex flex-col sm:flex-row items-start gap-6">
-                    <div className="relative flex-shrink-0">
-                      <Avatar className="w-28 h-28 border-4 border-primary/50">
-                        <AvatarImage
-                          src={`https://api.astrobarta.com${astrologer.profile_image}`}
-                          alt={astrologer.name}
-                        />
-                        <AvatarFallback>
-                          {astrologer.name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div
-                        className="absolute top-1 right-1 w-5 h-5 bg-green-500 border-2 border-background rounded-full"
-                        title="Online"
-                      ></div>
-                    </div>
-                    <div className="flex-1">
-                      <div>
-                        <h1 className="text-3xl font-bold font-headline pr-10">
-                          {astrologer.name}
-                        </h1>
-                        <p className="text-muted-foreground mt-1">
-                          {astrologer.expertise}
-                        </p>
+                <CardContent className="p-4 sm:p-6 relative">
+                  {/* Mobile View */}
+                  <div className="sm:hidden">
+                    <div className="flex flex-row items-start gap-3">
+                      <div className="relative flex-shrink-0">
+                        <Avatar className="w-20 h-20 border-2 border-primary/50">
+                          <AvatarImage
+                            src={`https://api.astrobarta.com${astrologer.profile_image}`}
+                            alt={astrologer.name}
+                          />
+                          <AvatarFallback>
+                            {astrologer.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div
+                          className="absolute top-0 right-0 w-4 h-4 bg-green-500 border-2 border-background rounded-full"
+                          title="Online"
+                        ></div>
                       </div>
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {expertiseTags.map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="bg-primary/10 text-primary border border-primary/20"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-sm">
-                        <div className="flex items-center gap-2">
-                          <Languages className="w-5 h-5 text-primary" />
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start">
                           <div>
-                            <p className="font-semibold">Language</p>
-                            <p className="text-muted-foreground">
-                              {astrologer.language}
+                            <h1 className="text-lg font-bold flex items-center gap-1.5">
+                              {astrologer.name}
+                              <ShieldCheck className="w-4 h-4 text-green-500 fill-green-100" />
+                            </h1>
+                            <p className="text-muted-foreground text-xs mt-0.5">
+                              {astrologer.expertise}
                             </p>
                           </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <GraduationCap className="w-5 h-5 text-primary" />
-                          <div>
-                            <p className="font-semibold">Experience</p>
-                            <p className="text-muted-foreground">
-                              {astrologer.experience}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="w-5 h-5 text-primary" />
-                          <div>
-                            <p className="font-semibold">Location</p>
-                            <p className="text-muted-foreground">
-                              {astrologer.location}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* "Start a Conversation" for mobile/tablet */}
-              <Card className="lg:hidden bg-gradient-to-br from-primary via-gradient-middle to-gradient-end text-primary-foreground shadow-xl">
-                <CardHeader className="items-center text-center">
-                  <CardTitle className="text-2xl font-bold text-white">
-                    Start a Conversation
-                  </CardTitle>
-                  <CardDescription className="text-primary-foreground/90">
-                    Get instant advice or book for later.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-6 pt-2">
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <Button
-                      size="lg"
-                      className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                    >
-                      <Phone className="mr-2 h-5 w-5" /> Call Now
-                    </Button>
-                     <BookingDialog
-                        astrologer={astrologer}
-                        trigger={
                           <Button
-                            size="lg"
-                            className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                            variant="outline"
+                            size="sm"
+                            className="px-3 text-primary border-primary hover:bg-primary/10 hover:text-primary whitespace-nowrap h-7 text-xs"
                           >
-                            <CalendarDays className="mr-2 h-5 w-5" /> Book
+                            Follow
                           </Button>
-                        }
-                      />
+                        </div>
+                        <div className="flex items-center gap-1 mt-2">
+                          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                          <Star className="w-3.5 h-3.5 text-gray-300" />
+                          <Badge
+                            variant="outline"
+                            className="ml-2 text-red-500 border-red-500 px-1.5 text-[10px]"
+                          >
+                            NEW!
+                          </Badge>
+                        </div>
+                        <div className="text-xs text-muted-foreground mt-2 space-y-0.5">
+                          <p>Exp: {astrologer.experience}</p>
+                          <p className="font-semibold text-foreground">
+                            ₹ 24/min
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <Separator className="my-3" />
+                    <div className="grid grid-cols-2 gap-2 text-center text-sm">
+                      <div className="flex items-center justify-center gap-1.5 text-muted-foreground">
+                        <MessageSquare className="w-4 h-4 text-primary" />
+                        <span>
+                          <span className="font-bold text-foreground">2K</span>{" "}
+                          mins
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1.5 text-muted-foreground">
+                        <Phone className="w-4 h-4 text-primary" />
+                        <span>
+                          <span className="font-bold text-foreground">526</span>{" "}
+                          mins
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop View */}
+                  <div className="hidden sm:block">
+                    <div className="absolute top-4 right-4">
+                      <ShareButton />
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-start gap-6">
+                      <div className="relative flex-shrink-0">
+                        <Avatar className="w-28 h-28 border-4 border-primary/50">
+                          <AvatarImage
+                            src={`https://api.astrobarta.com${astrologer.profile_image}`}
+                            alt={astrologer.name}
+                          />
+                          <AvatarFallback>
+                            {astrologer.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div
+                          className="absolute top-1 right-1 w-5 h-5 bg-green-500 border-2 border-background rounded-full"
+                          title="Online"
+                        ></div>
+                      </div>
+                      <div className="flex-1">
+                        <div>
+                          <h1 className="text-3xl font-bold font-headline pr-10">
+                            {astrologer.name}
+                          </h1>
+                          <p className="text-muted-foreground mt-1">
+                            {astrologer.expertise}
+                          </p>
+                        </div>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {expertiseTags.map((tag) => (
+                            <Badge
+                              key={tag}
+                              variant="secondary"
+                              className="bg-primary/10 text-primary border border-primary/20"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-sm">
+                          <div className="flex items-center gap-2">
+                            <Languages className="w-5 h-5 text-primary" />
+                            <div>
+                              <p className="font-semibold">Language</p>
+                              <p className="text-muted-foreground">
+                                {astrologer.language}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <GraduationCap className="w-5 h-5 text-primary" />
+                            <div>
+                              <p className="font-semibold">Experience</p>
+                              <p className="text-muted-foreground">
+                                {astrologer.experience}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-5 h-5 text-primary" />
+                            <div>
+                              <p className="font-semibold">Location</p>
+                              <p className="text-muted-foreground">
+                                {astrologer.location}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -199,6 +249,40 @@ export default async function AstrologerProfilePage({
                       __html: astrologer.bio.replace(/&amp;#039;/g, "'"),
                     }}
                   />
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Gallery</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-3 gap-2">
+                    <Image
+                      data-ai-hint="astrologer portrait"
+                      src="https://placehold.co/300x200.png"
+                      width={300}
+                      height={200}
+                      alt="Astrologer gallery image 1"
+                      className="rounded-md object-cover aspect-video"
+                    />
+                    <Image
+                      data-ai-hint="astrologer portrait"
+                      src="https://placehold.co/300x200.png"
+                      width={300}
+                      height={200}
+                      alt="Astrologer gallery image 2"
+                      className="rounded-md object-cover aspect-video"
+                    />
+                    <Image
+                      data-ai-hint="astrologer portrait"
+                      src="https://placehold.co/300x200.png"
+                      width={300}
+                      height={200}
+                      alt="Astrologer gallery image 3"
+                      className="rounded-md object-cover aspect-video"
+                    />
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -223,17 +307,17 @@ export default async function AstrologerProfilePage({
                     >
                       <Phone className="mr-2 h-5 w-5" /> Call Now
                     </Button>
-                     <BookingDialog
-                        astrologer={astrologer}
-                        trigger={
-                          <Button
-                            size="lg"
-                            className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                          >
-                            <CalendarDays className="mr-2 h-5 w-5" /> Book
-                          </Button>
-                        }
-                      />
+                    <BookingDialog
+                      astrologer={astrologer}
+                      trigger={
+                        <Button
+                          size="lg"
+                          className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                        >
+                          <CalendarDays className="mr-2 h-5 w-5" /> Book
+                        </Button>
+                      }
+                    />
                   </div>
                 </CardContent>
               </Card>
@@ -253,6 +337,22 @@ export default async function AstrologerProfilePage({
           </div>
         </div>
       </main>
+      {/* Sticky Bottom Bar for Mobile */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-3 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] lg:hidden">
+        <div className="grid grid-cols-2 gap-3">
+          <Button size="lg" variant="outline" className="font-semibold">
+            <MessageSquare className="mr-2 h-5 w-5" /> Chat
+          </Button>
+          <BookingDialog
+            astrologer={astrologer}
+            trigger={
+              <Button size="lg" className="w-full font-semibold">
+                <Phone className="mr-2 h-5 w-5" /> Call
+              </Button>
+            }
+          />
+        </div>
+      </div>
       <Footer />
     </div>
   );
