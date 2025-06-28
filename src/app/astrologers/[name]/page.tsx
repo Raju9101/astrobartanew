@@ -15,7 +15,6 @@ import {
   GraduationCap,
   Languages,
   MapPin,
-  MessageSquare,
   Phone,
   ShieldCheck,
   Star,
@@ -221,6 +220,39 @@ export default async function AstrologerProfilePage({
                   </div>
                 </CardContent>
               </Card>
+              <div className="lg:hidden">
+                <Card className="bg-gradient-to-br from-primary via-gradient-middle to-gradient-end text-primary-foreground shadow-xl">
+                    <CardHeader className="items-center text-center">
+                      <CardTitle className="text-2xl font-bold text-white">
+                        Start a Conversation
+                      </CardTitle>
+                      <CardDescription className="text-primary-foreground/90">
+                        Get instant advice or book for later.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-6 pt-2">
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <Button
+                          size="lg"
+                          className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                        >
+                          <Phone className="mr-2 h-5 w-5" /> Call Now
+                        </Button>
+                        <BookingDialog
+                          astrologer={astrologer}
+                          trigger={
+                            <Button
+                              size="lg"
+                              className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                            >
+                              <CalendarDays className="mr-2 h-5 w-5" /> Book
+                            </Button>
+                          }
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+              </div>
 
               <Card>
                 <CardHeader>
@@ -293,13 +325,13 @@ export default async function AstrologerProfilePage({
       <div className="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-3 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] lg:hidden">
         <div className="grid grid-cols-2 gap-3">
           <Button size="lg" variant="outline" className="font-semibold">
-            <MessageSquare className="mr-2 h-5 w-5" /> Chat
+            <Phone className="mr-2 h-5 w-5" /> Call
           </Button>
           <BookingDialog
             astrologer={astrologer}
             trigger={
               <Button size="lg" className="w-full font-semibold">
-                <Phone className="mr-2 h-5 w-5" /> Call
+                <CalendarDays className="mr-2 h-5 w-5" /> Book
               </Button>
             }
           />
