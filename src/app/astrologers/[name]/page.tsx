@@ -23,6 +23,7 @@ import { notFound } from "next/navigation";
 import { AstrologerRatings } from "@/components/astrologer-ratings";
 import { ShareButton } from "@/components/share-button";
 import { BookingDialog } from "@/components/booking-dialog";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 interface Astrologer {
   id: number;
@@ -71,6 +72,7 @@ export default async function AstrologerProfilePage({
 
   return (
     <div className="flex flex-col min-h-screen bg-secondary/50">
+      <ScrollToTop />
       <Header />
       <main className="flex-1 py-8 sm:py-12 pb-28 lg:pb-12">
         <div className="container mx-auto max-w-7xl px-4">
