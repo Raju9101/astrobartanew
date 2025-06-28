@@ -129,26 +129,20 @@ export default async function AstrologerProfilePage({
                             NEW!
                           </Badge>
                         </div>
-                        <div className="text-xs text-muted-foreground mt-2 space-y-0.5">
-                          <p>Exp: {astrologer.experience}</p>
+                        <div className="text-xs text-muted-foreground mt-3 space-y-1.5">
+                            <div className="flex items-center gap-1.5">
+                                <GraduationCap className="w-3.5 h-3.5 text-primary" />
+                                <span>Exp: {astrologer.experience}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                                <Languages className="w-3.5 h-3.5 text-primary" />
+                                <span>{astrologer.language}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                                <MapPin className="w-3.5 h-3.5 text-primary" />
+                                <span>{astrologer.location}</span>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                    <Separator className="my-3" />
-                    <div className="grid grid-cols-2 gap-2 text-center text-sm">
-                      <div className="flex items-center justify-center gap-1.5 text-muted-foreground">
-                        <MessageSquare className="w-4 h-4 text-primary" />
-                        <span>
-                          <span className="font-bold text-foreground">2K</span>{" "}
-                          mins
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-center gap-1.5 text-muted-foreground">
-                        <Phone className="w-4 h-4 text-primary" />
-                        <span>
-                          <span className="font-bold text-foreground">526</span>{" "}
-                          mins
-                        </span>
                       </div>
                     </div>
                   </div>
@@ -228,6 +222,40 @@ export default async function AstrologerProfilePage({
                   </div>
                 </CardContent>
               </Card>
+
+              <div className="lg:hidden">
+                <Card className="bg-gradient-to-br from-primary via-gradient-middle to-gradient-end text-primary-foreground shadow-xl">
+                  <CardHeader className="items-center text-center">
+                    <CardTitle className="text-2xl font-bold text-white">
+                      Start a Conversation
+                    </CardTitle>
+                    <CardDescription className="text-primary-foreground/90">
+                      Get instant advice or book for later.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-6 pt-2">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <Button
+                        size="lg"
+                        className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                      >
+                        <Phone className="mr-2 h-5 w-5" /> Call Now
+                      </Button>
+                      <BookingDialog
+                        astrologer={astrologer}
+                        trigger={
+                          <Button
+                            size="lg"
+                            className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                          >
+                            <CalendarDays className="mr-2 h-5 w-5" /> Book
+                          </Button>
+                        }
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
 
               <Card>
                 <CardHeader>
