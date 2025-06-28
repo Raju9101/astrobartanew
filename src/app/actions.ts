@@ -79,7 +79,7 @@ export async function createBooking(
 
   try {
     const res = await fetch(
-      "https://api.astrobarta.com/api/create_booking.php",
+      "https://api.astrobarta.com/create_booking.php",
       {
         method: "POST",
         headers: {

@@ -41,7 +41,7 @@ export function AstrologerList() {
       try {
         setLoading(true);
         const res = await fetch(
-          "https://api.astrobarta.com/api/get_astrologer.php",
+          "https://api.astrobarta.com/get_astrologer.php",
           {
             cache: "no-store",
           }
@@ -125,7 +125,7 @@ export function AstrologerList() {
                             <div className="relative">
                               <Avatar className="w-20 h-20 border-2 border-primary/50">
                                 <AvatarImage
-                                  src={`https://api.astrobarta.com/api${astrologer.profile_image}`}
+                                  src={`https://api.astrobarta.com${astrologer.profile_image}`}
                                   alt={astrologer.name}
                                 />
                                 <AvatarFallback>

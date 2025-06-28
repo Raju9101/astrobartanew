@@ -37,7 +37,7 @@ interface Astrologer {
 
 async function getAstrologer(name: string): Promise<Astrologer | undefined> {
   try {
-    const res = await fetch("https://api.astrobarta.com/api/get_astrologer.php", {
+    const res = await fetch("https://api.astrobarta.com/get_astrologer.php", {
       cache: "no-store",
     });
     if (!res.ok) {
@@ -89,7 +89,7 @@ export default async function AstrologerProfilePage({
                     <div className="relative flex-shrink-0">
                       <Avatar className="w-28 h-28 border-4 border-primary/50">
                         <AvatarImage
-                          src={`https://api.astrobarta.com/api${astrologer.profile_image}`}
+                          src={`https://api.astrobarta.com${astrologer.profile_image}`}
                           alt={astrologer.name}
                         />
                         <AvatarFallback>

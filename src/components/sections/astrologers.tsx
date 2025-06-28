@@ -17,7 +17,7 @@ interface Astrologer {
 
 async function getAstrologers(): Promise<Astrologer[]> {
   try {
-    const res = await fetch('https://api.astrobarta.com/api/get_astrologer.php', {
+    const res = await fetch('https://api.astrobarta.com/get_astrologer.php', {
       cache: 'no-store' 
     });
     if (!res.ok) {
@@ -58,7 +58,7 @@ export async function Astrologers() {
                       <div className="flex flex-col items-center flex-shrink-0">
                         <div className="relative">
                           <Avatar className="w-20 h-20 border-2 border-primary/50">
-                            <AvatarImage src={`https://api.astrobarta.com/api${astrologer.profile_image}`} alt={astrologer.name} />
+                            <AvatarImage src={`https://api.astrobarta.com${astrologer.profile_image}`} alt={astrologer.name} />
                             <AvatarFallback>{astrologer.name.charAt(0)}</AvatarFallback>
                           </Avatar>
                           {isOnline && <div className="absolute top-1 right-1 w-4 h-4 bg-green-500 border-2 border-background rounded-full" title="Online"></div>}
