@@ -270,40 +270,6 @@ export default async function AstrologerProfilePage({
                   />
                 </CardContent>
               </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Gallery</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-3 gap-2">
-                    <Image
-                      data-ai-hint="astrologer portrait"
-                      src="https://placehold.co/300x200.png"
-                      width={300}
-                      height={200}
-                      alt="Astrologer gallery image 1"
-                      className="rounded-md object-cover aspect-video"
-                    />
-                    <Image
-                      data-ai-hint="astrologer portrait"
-                      src="https://placehold.co/300x200.png"
-                      width={300}
-                      height={200}
-                      alt="Astrologer gallery image 2"
-                      className="rounded-md object-cover aspect-video"
-                    />
-                    <Image
-                      data-ai-hint="astrologer portrait"
-                      src="https://placehold.co/300x200.png"
-                      width={300}
-                      height={200}
-                      alt="Astrologer gallery image 3"
-                      className="rounded-md object-cover aspect-video"
-                    />
-                  </div>
-                </CardContent>
-              </Card>
             </div>
 
             {/* Right Column */}
