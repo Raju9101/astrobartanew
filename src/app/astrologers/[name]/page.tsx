@@ -36,21 +36,18 @@ interface Astrologer {
 }
 
 async function getAstrologer(name: string): Promise<Astrologer | undefined> {
-  try {
-    const res = await fetch("https://api.astrobarta.com/get_astrologer.php", {
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      console.error("Failed to fetch astrologers:", res.statusText);
-      return undefined;
-    }
-    const data = await res.json();
-    const astrologers: Astrologer[] = data.data || [];
-    return astrologers.find((astro) => astro.name === name);
-  } catch (error) {
-    console.error("Error fetching astrologers:", error);
-    return undefined;
+  const res = await fetch("https://api.astrobarta.com/get_astrologer.php", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    // This will be caught by the error boundary and show the error.tsx file.
+    throw new Error("Failed to fetch astrologer data from the cosmic servers.");
   }
+  
+  const data = await res.json();
+  const astrologers: Astrologer[] = data.data || [];
+  return astrologers.find((astro) => astro.name === name);
 }
 
 export default async function AstrologerProfilePage({
