@@ -129,7 +129,7 @@ export default async function AstrologerProfilePage({
                         <div className="text-xs text-muted-foreground mt-3 space-y-1.5">
                             <div className="flex items-center gap-1.5">
                                 <GraduationCap className="w-3.5 h-3.5 text-primary" />
-                                <span>Exp: {astrologer.experience}</span>
+                                <span>Exp: {astrologer.experience} years</span>
                             </div>
                             <div className="flex items-center gap-1.5">
                                 <Languages className="w-3.5 h-3.5 text-primary" />
@@ -200,7 +200,7 @@ export default async function AstrologerProfilePage({
                             <div>
                               <p className="font-semibold">Experience</p>
                               <p className="text-muted-foreground">
-                                {astrologer.experience}
+                                {astrologer.experience} years
                               </p>
                             </div>
                           </div>
