@@ -28,7 +28,7 @@ const featuresList: Feature[] = [
 
 export function Features() {
   return (
-    <section id="features" className="container mx-auto max-w-7xl px-4 py-16 sm:py-24">
+    <section id="features" className="container mx-auto max-w-7xl px-4 py-12 sm:py-16">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">Why Choose AstroBarta?</h2>
         <p className="mt-4 text-lg text-foreground/60">Your cosmic journey, simplified and secured.</p>

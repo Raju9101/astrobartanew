@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export function CTA() {
   return (
     <section className="bg-background">
-      <div className="container mx-auto max-w-7xl px-4 py-16 text-center sm:py-24">
+      <div className="container mx-auto max-w-7xl px-4 py-12 text-center sm:py-16">
         <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
           Ready to Uncover Your Cosmic Path?
         </h2>

@@ -18,7 +18,7 @@ export function Hero() {
         <div className="blur-[106px] h-56 bg-gradient-to-br from-primary to-gradient-end"></div>
         <div className="blur-[106px] h-32 bg-gradient-to-r from-gradient-start to-gradient-middle"></div>
       </div>
-      <div className="container relative mx-auto max-w-7xl px-4 py-16 sm:py-20 grid lg:grid-cols-2 lg:gap-12 items-center">
+      <div className="container relative mx-auto max-w-7xl px-4 py-12 sm:py-16 grid lg:grid-cols-2 lg:gap-12 items-center">
         <div className="text-center lg:text-left">
             <h1 className="font-headline text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl">
               <span className="block bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent py-2 bg-[size:200%_auto] animate-gradient">

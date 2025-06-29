@@ -44,7 +44,7 @@ const expertiseList: ExpertiseItem[] = [
 
 export function Expertise() {
   return (
-    <section id="expertise" className="bg-background py-16 sm:py-24">
+    <section id="expertise" className="bg-background py-12 sm:py-16">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mb-12 flex items-center justify-between">
           <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
