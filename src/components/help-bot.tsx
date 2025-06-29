@@ -46,7 +46,7 @@ export function HelpBot() {
                <Button
                 asChild
                 size="icon"
-                className="rounded-full w-12 h-12 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg"
+                className="rounded-full w-12 h-12 bg-[#FFD600] hover:bg-amber-400 text-slate-800 shadow-lg"
                 aria-label="Call Us"
               >
                  <Link href="tel:+919876543210">
@@ -70,8 +70,8 @@ export function HelpBot() {
                     aria-label={isOpen ? 'Close help menu' : 'Open help menu'}
                 >
                     <div className="relative w-full h-full flex items-center justify-center">
-                        <Bot className={cn('h-7 w-7 transition-all duration-300', isOpen ? 'rotate-90 opacity-0 scale-50' : 'rotate-0 opacity-100 scale-100')} />
-                        <X className={cn('h-7 w-7 absolute transition-all duration-300', isOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-50')} />
+                        <Bot className={cn('h-7 w-7 transition-all duration-300', isOpen ? 'rotate-180 opacity-0 scale-0' : 'rotate-0 opacity-100 scale-100')} />
+                        <X className={cn('h-7 w-7 absolute transition-all duration-300', isOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-180 opacity-0 scale-0')} />
                     </div>
                 </Button>
             </TooltipTrigger>
