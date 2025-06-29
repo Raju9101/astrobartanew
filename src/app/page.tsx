@@ -14,8 +14,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Expertise />
-        <Features />
         <Astrologers />
+        <Features />
         <AIMatcherSection />
         <CTA />
       </main>
