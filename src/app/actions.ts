@@ -78,8 +78,10 @@ export async function createBooking(
   }
 
   try {
+    const apiKey = process.env.NEXT_PUBLIC_ASTROBARTA_API_KEY;
+    const url = `https://api.astrobarta.com/create_booking.php${apiKey ? `?api_key=${apiKey}` : ''}`;
     const res = await fetch(
-      "https://api.astrobarta.com/create_booking.php",
+      url,
       {
         method: "POST",
         headers: {
