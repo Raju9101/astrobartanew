@@ -79,6 +79,7 @@ export function BookingDialog({ astrologer, trigger }: BookingDialogProps) {
       email: '',
       phone_number: '',
       address: '',
+      session_book_date: undefined,
       session_book_time: '',
     },
   });
@@ -135,6 +136,7 @@ export function BookingDialog({ astrologer, trigger }: BookingDialogProps) {
              email: '',
              phone_number: '',
              address: '',
+             session_book_date: undefined,
              session_book_time: '',
         });
     }, 300);
