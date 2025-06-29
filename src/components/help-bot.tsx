@@ -66,7 +66,7 @@ export function HelpBot() {
                 <Button
                     onClick={() => setIsOpen(!isOpen)}
                     size="icon"
-                    className="rounded-full w-14 h-14 bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end text-white shadow-xl transform transition-transform duration-300 hover:scale-110 bg-[size:200%_auto] animate-gradient"
+                    className="rounded-full w-14 h-14 bg-[#FFD600] hover:bg-amber-400 text-slate-800 shadow-xl transform transition-transform duration-300 hover:scale-110"
                     aria-label={isOpen ? 'Close help menu' : 'Open help menu'}
                 >
                     <div className="relative w-full h-full flex items-center justify-center">
