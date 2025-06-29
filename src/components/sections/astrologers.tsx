@@ -52,7 +52,7 @@ export function Astrologers() {
   const astrologers = allAstrologers.slice(0, 6);
 
   return (
-    <section id="astrologers" className="bg-background py-12 sm:py-16">
+    <section id="astrologers" className="bg-background pt-8 pb-12 sm:pt-12 sm:pb-16">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">Meet Our Top Astrologers</h2>
