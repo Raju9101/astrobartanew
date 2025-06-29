@@ -14,7 +14,7 @@ interface HoroscopeState {
 }
 
 export async function getDailyHoroscope(
-  prevState: HoroscopeState,
+  prevState: HoroscopeState | undefined,
   formData: FormData
 ): Promise<HoroscopeState> {
   const validatedFields = HoroscopeSchema.safeParse({
