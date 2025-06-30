@@ -35,7 +35,7 @@ export function HelpBot() {
               <Button
                 asChild
                 size="icon"
-                className="rounded-full w-12 h-12 bg-green-500 hover:bg-green-600 text-white shadow-lg"
+                className="rounded-full w-12 h-12 bg-rose-500 hover:bg-rose-600 text-white shadow-lg"
                 aria-label="Chat on WhatsApp"
               >
                 <Link href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
@@ -55,7 +55,7 @@ export function HelpBot() {
                <Button
                 asChild
                 size="icon"
-                className="rounded-full w-12 h-12 bg-[#FFD600] hover:bg-amber-400 text-slate-800 shadow-lg"
+                className="rounded-full w-12 h-12 bg-rose-500 hover:bg-rose-600 text-white shadow-lg"
                 aria-label="Call Us"
               >
                  <Link href="tel:+919876543210">
@@ -75,7 +75,7 @@ export function HelpBot() {
                 <Button
                     onClick={() => setIsOpen(!isOpen)}
                     size="icon"
-                    className="rounded-full w-14 h-14 bg-[#FFD600] hover:bg-amber-400 text-slate-800 shadow-xl transform transition-transform duration-300 hover:scale-110"
+                    className="rounded-full w-14 h-14 bg-rose-500 hover:bg-rose-600 text-white shadow-xl transform transition-transform duration-300 hover:scale-110"
                     aria-label={isOpen ? 'Close help menu' : 'Open help menu'}
                 >
                     <div className="relative w-full h-full flex items-center justify-center">
