@@ -90,7 +90,7 @@ export function AstrologerList() {
           <h1 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
             Find Your Astrologer
           </h1>
-          <p className="mt-4 text-lg text-foreground/60">
+          <p className="mt-4 text-lg text-foreground/60 hidden sm:block">
             Search for an expert by name, expertise, or language.
           </p>
         </div>
