@@ -84,10 +84,10 @@ export function AstrologerList() {
   }, [searchQuery, astrologers]);
 
   return (
-    <section id="astrologers-list" className="bg-background py-16 sm:py-24">
+    <section id="astrologers-list" className="bg-background py-12 sm:py-16">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-2xl font-headline font-bold tracking-tighter sm:text-4xl">
             Find Your Astrologer
           </h1>
           <p className="mt-4 text-lg text-foreground/60 hidden sm:block">
