@@ -33,7 +33,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Loader2, PartyPopper } from 'lucide-react';
+import { Loader2, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { createBooking } from '@/app/actions';
 
@@ -147,11 +147,16 @@ export function BookingDialog({ astrologer, trigger }: BookingDialogProps) {
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         {bookingResult?.success ? (
-          <div className="flex flex-col items-center justify-center text-center p-8 gap-4">
-             <PartyPopper className="w-16 h-16 text-primary" />
-             <DialogTitle className="text-2xl">Booking Confirmed!</DialogTitle>
-             <p className="text-muted-foreground">{bookingResult.message}</p>
-             <Button onClick={resetDialog} className="mt-4">Done</Button>
+          <div className="flex flex-col items-center justify-center text-center">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary flex items-center justify-center">
+                    <Check className="w-8 h-8 sm:w-10 sm:h-10 text-primary-foreground" />
+                </div>
+            </div>
+            <p className="font-semibold text-primary">Great!</p>
+            <DialogTitle className="text-2xl mt-1">Booking Confirmed!</DialogTitle>
+            <p className="text-muted-foreground mt-2 max-w-sm">{bookingResult.message}</p>
+            <Button onClick={resetDialog} className="mt-6 w-full">Done</Button>
           </div>
         ) : (
           <>
