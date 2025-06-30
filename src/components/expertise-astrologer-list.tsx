@@ -18,6 +18,7 @@ import {
 import Link from "next/link";
 import { ShareButton } from "./share-button";
 import { BookingDialog } from "./booking-dialog";
+import { CallRequestDialog } from "./call-request-dialog";
 
 interface Astrologer {
   id: number;
@@ -191,16 +192,17 @@ export function ExpertiseAstrologerList({
                               </Button>
                           }
                         />
-                        <Button
-                            asChild
-                            variant="outline"
-                            className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                        >
-                          <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`}>
-                            <Phone className="mr-2 h-4 w-4" />
-                            Call
-                          </Link>
-                        </Button>
+                        <CallRequestDialog
+                          trigger={
+                            <Button
+                                variant="outline"
+                                className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
+                              >
+                                <Phone className="mr-2 h-4 w-4" />
+                                Call
+                              </Button>
+                          }
+                        />
                     </div>
                   </CardContent>
                 </Card>

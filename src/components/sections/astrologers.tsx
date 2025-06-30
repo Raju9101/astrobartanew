@@ -10,6 +10,7 @@ import { Star, Languages, GraduationCap, Award, Phone, CalendarDays, Loader2 } f
 import Link from "next/link";
 import { ShareButton } from "../share-button";
 import { BookingDialog } from "../booking-dialog";
+import { CallRequestDialog } from "../call-request-dialog";
 
 interface Astrologer {
   id: number;
@@ -116,8 +117,7 @@ export function Astrologers() {
 
                       <Separator className="my-4 bg-border/50" />
 
-                      <div className="flex justify-end items-center">
-                        <div className="flex gap-2">
+                      <div className="grid grid-cols-2 gap-2 mt-auto">
                            <BookingDialog
                             astrologer={astrologer}
                             trigger={
@@ -127,13 +127,14 @@ export function Astrologers() {
                               </Button>
                             }
                           />
-                          <Link href={`/astrologers/${encodeURIComponent(astrologer.name)}`} className="w-full">
-                            <Button variant="outline" className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary">
-                              <Phone className="mr-2 h-4 w-4" />
-                              Call
-                            </Button>
-                          </Link>
-                        </div>
+                          <CallRequestDialog
+                            trigger={
+                              <Button variant="outline" className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary">
+                                <Phone className="mr-2 h-4 w-4" />
+                                Call
+                              </Button>
+                            }
+                          />
                       </div>
                     </CardContent>
                   </Card>

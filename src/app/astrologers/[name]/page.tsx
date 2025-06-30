@@ -24,6 +24,7 @@ import { AstrologerRatings } from "@/components/astrologer-ratings";
 import { ShareButton } from "@/components/share-button";
 import { BookingDialog } from "@/components/booking-dialog";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { CallRequestDialog } from "@/components/call-request-dialog";
 
 interface Astrologer {
   id: number;
@@ -251,12 +252,16 @@ export default async function AstrologerProfilePage({
                   </CardHeader>
                   <CardContent className="p-6 pt-2">
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <Button
-                        size="lg"
-                        className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
-                      >
-                        <Phone className="mr-2 h-5 w-5" /> Call Now
-                      </Button>
+                      <CallRequestDialog
+                        trigger={
+                           <Button
+                            size="lg"
+                            className="w-full bg-white font-semibold text-primary shadow-md transition-transform hover:scale-105 hover:bg-white/95"
+                          >
+                            <Phone className="mr-2 h-5 w-5" /> Call Now
+                          </Button>
+                        }
+                      />
                       <BookingDialog
                         astrologer={astrologer}
                         trigger={
@@ -291,9 +296,13 @@ export default async function AstrologerProfilePage({
       {/* Sticky Bottom Bar for Mobile */}
       <div className="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-3 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] lg:hidden">
         <div className="grid grid-cols-2 gap-3">
-          <Button size="lg" variant="outline" className="font-semibold">
-            <Phone className="mr-2 h-5 w-5" /> Call
-          </Button>
+           <CallRequestDialog
+            trigger={
+              <Button size="lg" variant="outline" className="font-semibold w-full">
+                <Phone className="mr-2 h-5 w-5" /> Call
+              </Button>
+            }
+          />
           <BookingDialog
             astrologer={astrologer}
             trigger={
