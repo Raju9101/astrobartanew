@@ -1,74 +1,151 @@
-import Image from "next/image";
+
+'use client';
+
+import * as React from 'react';
+import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
-const sliderImages = [
+const sliderContent = [
   {
-    src: "https://placehold.co/1200x600.png",
-    alt: "Astrology reading session",
-    "data-ai-hint": "astrology cosmic"
+    bgColor: 'bg-teal-400',
+    title: 'Consult Top Astrologers',
+    description: 'From Your Home or Anywhere in the World.',
+    buttonText: 'Book a Reading',
+    image: {
+      src: 'https://placehold.co/600x600.png',
+      alt: 'Astrologer providing consultation',
+      "data-ai-hint": "astrologer portrait"
+    },
   },
   {
-    src: "https://placehold.co/1200x600.png",
-    alt: "Constellations in the night sky",
-    "data-ai-hint": "constellations night"
+    bgColor: 'bg-amber-400',
+    title: 'Daily Personalized Horoscopes',
+    description: 'Discover what the stars have in store for you today.',
+    buttonText: 'Get My Horoscope',
+    image: {
+      src: 'https://placehold.co/600x600.png',
+      alt: 'Zodiac wheel and constellations',
+      "data-ai-hint": "zodiac wheel"
+    },
   },
   {
-    src: "https://placehold.co/1200x600.png",
-    alt: "Astrologer with tarot cards",
-    "data-ai-hint": "tarot cards"
+    bgColor: 'bg-rose-400',
+    title: 'Find Your Cosmic Match',
+    description: "Check your compatibility with our expert's guidance.",
+    buttonText: 'Check Compatibility',
+    image: {
+      src: 'https://placehold.co/600x600.png',
+      alt: 'Couple under the stars',
+      "data-ai-hint": "couple stars"
+    },
   },
 ];
 
 export function Hero() {
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap());
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on('select', onSelect);
+
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api]);
+
+  const scrollTo = React.useCallback(
+    (index: number) => {
+      api?.scrollTo(index);
+    },
+    [api]
+  );
+
   return (
-    <section className="w-full">
-      <Carousel
-        className="w-full"
-        opts={{
-          loop: true,
-        }}
-      >
-        <CarouselContent>
-          {sliderImages.map((image, index) => (
-            <CarouselItem key={index}>
-              <div className="relative aspect-[16/9] md:aspect-[21/9] w-full h-[300px] sm:h-[400px] md:h-[500px]">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                  data-ai-hint={image["data-ai-hint"]}
-                />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center text-white p-4">
-                        <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl text-shadow-lg">
-                           <span className="block bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent py-2 bg-[size:200%_auto] animate-gradient">
-                                🌟 AstroBarta 🌟
-                            </span>
-                        </h1>
-                        <p className="mt-6 max-w-2xl mx-auto text-lg text-white/90 md:text-xl text-shadow">
-                            Your Gateway to Trusted Astrologers. <br />
-                            Book personalized consultations with top astrologers anytime, anywhere.
-                        </p>
+    <section className="w-full py-6 md:py-12">
+      <div className="container mx-auto max-w-7xl px-4">
+        <Carousel
+          setApi={setApi}
+          className="w-full"
+          opts={{
+            loop: true,
+          }}
+        >
+          <CarouselContent>
+            {sliderContent.map((slide, index) => (
+              <CarouselItem key={index}>
+                <div
+                  className={cn(
+                    'rounded-lg text-white overflow-hidden',
+                    slide.bgColor
+                  )}
+                >
+                  <div className="grid md:grid-cols-2 items-center">
+                    <div className="p-8 md:p-12 lg:p-16 text-center md:text-left">
+                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+                        {slide.title}
+                      </h1>
+                      <p className="mt-4 text-lg md:text-xl text-white/90">
+                        {slide.description}
+                      </p>
+                      <Button
+                        size="lg"
+                        className="mt-8 bg-background text-foreground hover:bg-background/90"
+                      >
+                        {slide.buttonText}
+                      </Button>
                     </div>
+                    <div className="relative h-64 md:h-96 order-first md:order-last">
+                       <Image
+                        src={slide.image.src}
+                        alt={slide.image.alt}
+                        data-ai-hint={slide.image["data-ai-hint"]}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <div className="hidden sm:block">
-            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 text-white border-white/50" />
-            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 text-white border-white/50" />
-        </div>
-      </Carousel>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-[-1rem] top-1/2 -translate-y-1/2 z-10 hidden md:flex" />
+          <CarouselNext className="absolute right-[-1rem] top-1/2 -translate-y-1/2 z-10 hidden md:flex" />
+        </Carousel>
+        <div className="flex justify-center gap-2 mt-4">
+            {sliderContent.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => scrollTo(i)}
+                className={cn(
+                  'h-2 w-2 rounded-full transition-all',
+                  i === current ? 'w-4 bg-primary' : 'bg-muted'
+                )}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+      </div>
     </section>
   );
 }
