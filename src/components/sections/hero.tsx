@@ -49,7 +49,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-black/40" />
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center text-white p-4">
-                        <h1 className="font-headline text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl text-shadow-lg">
+                        <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl text-shadow-lg">
                            <span className="block bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end bg-clip-text text-transparent py-2 bg-[size:200%_auto] animate-gradient">
                                 🌟 AstroBarta 🌟
                             </span>
