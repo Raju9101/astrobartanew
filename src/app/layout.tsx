@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { HelpBot } from "@/components/help-bot";
+import { MobileNav } from "@/components/layout/mobile-nav";
 
 export const metadata: Metadata = {
   title: "AstroBarta - Your Gateway to Trusted Astrologers",
@@ -29,9 +30,12 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        {children}
+        <div className="pb-16 md:pb-0">
+          {children}
+        </div>
         <Toaster />
         <HelpBot />
+        <MobileNav />
       </body>
     </html>
   );
