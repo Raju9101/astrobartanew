@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
         hostname: 'api.astrobarta.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

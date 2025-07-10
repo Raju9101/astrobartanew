@@ -20,7 +20,7 @@ const sliderContent = [
     bgColor: 'bg-teal-400',
     image: {
       desktop: {
-        src: 'https://placehold.co/1200x400.png',
+        src: 'https://res.cloudinary.com/dbyy6z4hl/image/upload/e_improve,e_sharpen/v1752133155/slider_01_zbefta.jpg',
         alt: 'Astrologer providing consultation',
         "data-ai-hint": "astrologer portrait"
       },
