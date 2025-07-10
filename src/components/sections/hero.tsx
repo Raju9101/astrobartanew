@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -25,7 +24,7 @@ const sliderContent = [
         "data-ai-hint": "astrologer portrait"
       },
       mobile: {
-        src: 'https://placehold.co/600x400.png',
+        src: 'https://res.cloudinary.com/dbyy6z4hl/image/upload/v1752134179/mobile_slider_1_yg7efl.png',
         alt: 'Astrologer providing consultation',
         "data-ai-hint": "astrologer portrait"
       }
