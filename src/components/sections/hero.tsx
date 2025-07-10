@@ -22,7 +22,7 @@ const sliderContent = [
     description: 'From Your Home or Anywhere in the World.',
     buttonText: 'Book a Reading',
     image: {
-      src: 'https://placehold.co/600x600.png',
+      src: 'https://placehold.co/1200x600.png',
       alt: 'Astrologer providing consultation',
       "data-ai-hint": "astrologer portrait"
     },
@@ -33,7 +33,7 @@ const sliderContent = [
     description: 'Discover what the stars have in store for you today.',
     buttonText: 'Get My Horoscope',
     image: {
-      src: 'https://placehold.co/600x600.png',
+      src: 'https://placehold.co/1200x600.png',
       alt: 'Zodiac wheel and constellations',
       "data-ai-hint": "zodiac wheel"
     },
@@ -44,7 +44,7 @@ const sliderContent = [
     description: "Check your compatibility with our expert's guidance.",
     buttonText: 'Check Compatibility',
     image: {
-      src: 'https://placehold.co/600x600.png',
+      src: 'https://placehold.co/1200x600.png',
       alt: 'Couple under the stars',
       "data-ai-hint": "couple stars"
     },
@@ -100,36 +100,18 @@ export function Hero() {
               <CarouselItem key={index}>
                 <div
                   className={cn(
-                    'rounded-lg text-white overflow-hidden',
+                    'rounded-lg text-white overflow-hidden relative h-64 md:h-[450px]',
                     slide.bgColor
                   )}
                 >
-                  <div className="grid md:grid-cols-2 items-center">
-                    <div className="p-8 md:p-12 lg:p-16 text-center md:text-left">
-                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
-                        {slide.title}
-                      </h1>
-                      <p className="mt-4 text-lg md:text-xl text-white/90">
-                        {slide.description}
-                      </p>
-                      <Button
-                        size="lg"
-                        className="mt-8 bg-background text-foreground hover:bg-background/90"
-                      >
-                        {slide.buttonText}
-                      </Button>
-                    </div>
-                    <div className="relative h-64 md:h-96 order-first md:order-last">
-                       <Image
-                        src={slide.image.src}
-                        alt={slide.image.alt}
-                        data-ai-hint={slide.image["data-ai-hint"]}
-                        fill
-                        className="object-cover"
-                        priority={index === 0}
-                      />
-                    </div>
-                  </div>
+                  <Image
+                    src={slide.image.src}
+                    alt={slide.image.alt}
+                    data-ai-hint={slide.image["data-ai-hint"]}
+                    fill
+                    className="object-cover"
+                    priority={index === 0}
+                  />
                 </div>
               </CarouselItem>
             ))}
