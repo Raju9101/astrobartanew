@@ -16,6 +16,11 @@ const navItems = [
 export function MobileNav() {
   const pathname = usePathname();
 
+  // Only show the mobile nav on the homepage
+  if (pathname !== '/') {
+    return null;
+  }
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border/40 bg-background/80 p-2 backdrop-blur supports-[backdrop-filter]:bg-background/50 md:hidden">
       <nav className="grid grid-cols-4 items-center justify-items-center gap-1 text-xs">
