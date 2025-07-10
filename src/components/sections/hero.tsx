@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
@@ -55,6 +55,10 @@ export function Hero() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
 
+  const plugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
+
   React.useEffect(() => {
     if (!api) {
       return;
@@ -85,6 +89,7 @@ export function Hero() {
       <div className="container mx-auto max-w-7xl px-4">
         <Carousel
           setApi={setApi}
+          plugins={[plugin.current]}
           className="w-full"
           opts={{
             loop: true,
