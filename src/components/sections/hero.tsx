@@ -18,35 +18,47 @@ import {
 const sliderContent = [
   {
     bgColor: 'bg-teal-400',
-    title: 'Consult Top Astrologers',
-    description: 'From Your Home or Anywhere in the World.',
-    buttonText: 'Book a Reading',
     image: {
-      src: 'https://placehold.co/1200x600.png',
-      alt: 'Astrologer providing consultation',
-      "data-ai-hint": "astrologer portrait"
+      desktop: {
+        src: 'https://placehold.co/1200x400.png',
+        alt: 'Astrologer providing consultation',
+        "data-ai-hint": "astrologer portrait"
+      },
+      mobile: {
+        src: 'https://placehold.co/600x400.png',
+        alt: 'Astrologer providing consultation',
+        "data-ai-hint": "astrologer portrait"
+      }
     },
   },
   {
     bgColor: 'bg-amber-400',
-    title: 'Daily Personalized Horoscopes',
-    description: 'Discover what the stars have in store for you today.',
-    buttonText: 'Get My Horoscope',
     image: {
-      src: 'https://placehold.co/1200x600.png',
-      alt: 'Zodiac wheel and constellations',
-      "data-ai-hint": "zodiac wheel"
+        desktop: {
+            src: 'https://placehold.co/1200x400.png',
+            alt: 'Zodiac wheel and constellations',
+            "data-ai-hint": "zodiac wheel"
+        },
+        mobile: {
+            src: 'https://placehold.co/600x400.png',
+            alt: 'Zodiac wheel and constellations',
+            "data-ai-hint": "zodiac wheel"
+        }
     },
   },
   {
     bgColor: 'bg-rose-400',
-    title: 'Find Your Cosmic Match',
-    description: "Check your compatibility with our expert's guidance.",
-    buttonText: 'Check Compatibility',
     image: {
-      src: 'https://placehold.co/1200x600.png',
-      alt: 'Couple under the stars',
-      "data-ai-hint": "couple stars"
+        desktop: {
+            src: 'https://placehold.co/1200x400.png',
+            alt: 'Couple under the stars',
+            "data-ai-hint": "couple stars"
+        },
+        mobile: {
+            src: 'https://placehold.co/600x400.png',
+            alt: 'Couple under the stars',
+            "data-ai-hint": "couple stars"
+        }
     },
   },
 ];
@@ -100,16 +112,24 @@ export function Hero() {
               <CarouselItem key={index}>
                 <div
                   className={cn(
-                    'rounded-lg text-white overflow-hidden relative h-64 md:h-[450px]',
+                    'rounded-lg text-white overflow-hidden relative h-56 md:h-[350px]',
                     slide.bgColor
                   )}
                 >
                   <Image
-                    src={slide.image.src}
-                    alt={slide.image.alt}
-                    data-ai-hint={slide.image["data-ai-hint"]}
+                    src={slide.image.desktop.src}
+                    alt={slide.image.desktop.alt}
+                    data-ai-hint={slide.image.desktop["data-ai-hint"]}
                     fill
-                    className="object-cover"
+                    className="object-cover hidden md:block"
+                    priority={index === 0}
+                  />
+                  <Image
+                    src={slide.image.mobile.src}
+                    alt={slide.image.mobile.alt}
+                    data-ai-hint={slide.image.mobile["data-ai-hint"]}
+                    fill
+                    className="object-cover md:hidden"
                     priority={index === 0}
                   />
                 </div>
