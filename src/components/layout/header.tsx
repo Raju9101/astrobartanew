@@ -15,7 +15,8 @@ import { Logo } from "@/components/logo";
 const navLinks = [
   { href: "#features", label: "Features" },
   { href: "/astrologers", label: "Astrologers" },
-  { href: "#daily-horoscope", label: "Daily Horoscope" },
+  { href: "/#daily-horoscope", label: "Daily Horoscope" },
+  { href: "/quick", label: "Quick" },
 ];
 
 export function Header() {
