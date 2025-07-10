@@ -1,6 +1,7 @@
 // This is a new file created by App Prototyper.
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, Users, Sparkles, Zap } from 'lucide-react';
@@ -15,7 +16,17 @@ const navItems = [
 
 export function MobileNav() {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Don't render until the component is mounted on the client
+  if (!isMounted) {
+    return null;
+  }
+  
   // Only show the mobile nav on the homepage
   if (pathname !== '/') {
     return null;
