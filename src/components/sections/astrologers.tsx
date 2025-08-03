@@ -121,7 +121,7 @@ export function Astrologers() {
                            <BookingDialog
                             astrologer={astrologer}
                             trigger={
-                              <Button variant="outline" className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary">
+                              <Button variant="outline" className="w-full text-foreground border-primary hover:bg-primary/10">
                                 <CalendarDays className="mr-2 h-4 w-4" />
                                 Book
                               </Button>
@@ -129,7 +129,7 @@ export function Astrologers() {
                           />
                           <CallRequestDialog
                             trigger={
-                              <Button variant="outline" className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary">
+                              <Button variant="outline" className="w-full text-foreground border-primary hover:bg-primary/10">
                                 <Phone className="mr-2 h-4 w-4" />
                                 Call
                               </Button>
