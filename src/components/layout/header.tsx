@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Calendar, Menu, Wallet } from "lucide-react";
+import { Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -73,10 +73,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" className="text-black hover:bg-white/20">
-                <Calendar />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-black hover:bg-white/20">
-                <Wallet />
+                <Phone />
             </Button>
         </div>
       </div>
