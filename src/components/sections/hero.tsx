@@ -6,10 +6,10 @@ export function Hero() {
           <div className="absolute -top-1/4 -right-1/4 w-1/2 h-full bg-primary-foreground/10 rounded-full opacity-50"></div>
           <div className="relative z-10 p-8 md:p-16">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">
-              Welcome To Astro <br /> Assam
+              Welcome To <br /> AstroBarta
             </h1>
             <p className="mt-4 text-lg md:text-xl">
-              Check Your Horoscope For Free
+              Your Gateway to Trusted Astrologers
             </p>
           </div>
         </div>
