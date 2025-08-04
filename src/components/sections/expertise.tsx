@@ -54,15 +54,17 @@ export function Expertise() {
             <Button variant="link" className="text-primary">View All</Button>
           </Link>
         </div>
-        <div className="grid grid-cols-3 gap-4 text-center sm:gap-8 lg:grid-cols-6">
+        <div className="grid grid-cols-3 gap-4 text-center sm:gap-6 lg:grid-cols-6">
           {expertiseList.map((item) => (
             <Link
               href={`/astrologers/expertise/${encodeURIComponent(item.title)}`}
               key={item.title}
-              className="group flex cursor-pointer flex-col items-center gap-3 sm:gap-4"
+              className="group flex cursor-pointer flex-col items-center gap-4"
             >
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/20 p-1 transition-all duration-300 group-hover:scale-105 group-hover:bg-primary/30 sm:h-24 sm:w-24">
-                  <item.icon className="h-9 w-9 text-primary transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10" />
+              <div className="flex h-24 w-24 items-center justify-center rounded-xl bg-card p-1 shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
+                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/90">
+                    <item.icon className="h-8 w-8 text-black transition-transform duration-300 group-hover:scale-110" />
+                </div>
               </div>
               <h3 className="text-sm font-semibold text-foreground/90 sm:text-base">
                 {item.title}
