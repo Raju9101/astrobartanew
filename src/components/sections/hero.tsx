@@ -8,8 +8,11 @@ export function Hero() {
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">
               Welcome To <br /> AstroBarta
             </h1>
-            <p className="mt-4 text-lg md:text-xl">
-              Your Gateway to Trusted Astrologers
+            <p className="mt-6 text-base md:text-lg max-w-md">
+              <span className="block">Your Trusted Path to Real Astrology.</span>
+              <span className="block mt-2 opacity-80">
+                Find reliable astrologers you can count on — anytime, anywhere.
+              </span>
             </p>
           </div>
         </div>
