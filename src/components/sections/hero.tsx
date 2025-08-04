@@ -1,3 +1,7 @@
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
+
 export function Hero() {
   return (
     <section className="w-full py-6 md:py-8">
@@ -14,6 +18,21 @@ export function Hero() {
                 Find reliable astrologers you can count on — anytime, anywhere.
               </span>
             </p>
+            <div className="mt-8 max-w-md">
+              <form className="flex w-full items-center space-x-2 rounded-lg bg-white p-2 shadow-md">
+                  <div className="relative flex-grow">
+                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                     <Input
+                        type="search"
+                        placeholder="Search for an astrologer..."
+                        className="w-full border-none pl-10 focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent text-base"
+                     />
+                  </div>
+                  <Button type="submit" className="bg-black text-white hover:bg-gray-800">
+                    Search
+                  </Button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
