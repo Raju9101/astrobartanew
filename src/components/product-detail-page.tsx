@@ -21,42 +21,42 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils";
-import { useCart } from "@/hooks/use-cart";
+import { useCart } from "@/hooks/use-cart.tsx";
 import { useToast } from "@/hooks/use-toast";
 
 const productImages = [
   {
-    src: "https://placehold.co/800x800.png",
+    src: "https://astrotalk.store/cdn/shop/files/xs9bzurowvho20b1qbig.webp?v=1750925191&width=750",
     alt: "Raw Pyrite Bracelet on a stone",
     hint: "pyrite bracelet",
   },
   {
-    src: "https://placehold.co/800x800.png",
+    src: "https://astrotalk.store/cdn/shop/files/xs9bzurowvho20b1qbig.webp?v=1750925191&width=750",
     alt: "Raw Pyrite Bracelet on a wrist",
     hint: "bracelet wrist",
   },
   {
-    src: "https://placehold.co/800x800.png",
+    src: "https://astrotalk.store/cdn/shop/files/xs9bzurowvho20b1qbig.webp?v=1750925191&width=750",
     alt: "GGLAB Certificate for the bracelet",
     hint: "certificate jewelry",
   },
   {
-    src: "https://placehold.co/800x800.png",
+    src: "https://astrotalk.store/cdn/shop/files/xs9bzurowvho20b1qbig.webp?v=1750925191&width=750",
     alt: "Information card about raw pyrite crystal",
     hint: "information card",
   },
   {
-    src: "https://placehold.co/800x800.png",
+    src: "https://astrotalk.store/cdn/shop/files/xs9bzurowvho20b1qbig.webp?v=1750925191&width=750",
     alt: "Close up of the bracelet beads",
     hint: "bracelet beads",
   },
   {
-    src: "https://placehold.co/800x800.png",
+    src: "https://astrotalk.store/cdn/shop/files/xs9bzurowvho20b1qbig.webp?v=1750925191&width=750",
     alt: "Bracelet with size information",
     hint: "bracelet sizing",
   },
   {
-    src: "https://placehold.co/800x800.png",
+    src: "https://astrotalk.store/cdn/shop/files/xs9bzurowvho20b1qbig.webp?v=1750925191&width=750",
     alt: "Another view of the bracelet",
     hint: "pyrite jewelry",
   },
