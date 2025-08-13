@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import { HelpBot } from "@/components/help-bot";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { CartProvider } from "@/hooks/use-cart.tsx";
 
@@ -36,7 +35,6 @@ export default function RootLayout({
             {children}
           </div>
           <Toaster />
-          <HelpBot />
           <MobileNav />
         </CartProvider>
       </body>
