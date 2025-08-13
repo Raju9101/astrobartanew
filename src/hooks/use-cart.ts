@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useCallback, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 export interface CartItem {
@@ -52,52 +52,54 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  const saveCart = useCallback((updatedCart: CartItem[]) => {
-    setCart(updatedCart);
-    try {
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-    } catch (error) {
+  useEffect(() => {
+    if (isMounted) {
+      try {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      } catch (error)        {
         console.error("Failed to save cart to localStorage", error);
+      }
     }
-  }, []);
+  }, [cart, isMounted]);
 
   const addToCart = (item: CartItem) => {
-    const existingItem = cart.find((cartItem) => cartItem.id === item.id);
-    if (existingItem) {
-      const updatedCart = cart.map((cartItem) =>
-        cartItem.id === item.id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      );
-      saveCart(updatedCart);
-    } else {
-      saveCart([...cart, { ...item, quantity: 1 }]);
-    }
-    setIsCartOpen(true);
+    setCart(prevCart => {
+      const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
+      let updatedCart;
+      if (existingItem) {
+        updatedCart = prevCart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      } else {
+        updatedCart = [...prevCart, { ...item, quantity: 1 }];
+      }
+      return updatedCart;
+    });
     toast({
         title: "Added to cart!",
         description: `${item.name} has been added to your cart.`,
     });
+    setIsCartOpen(true);
   };
 
   const removeFromCart = (itemId: string) => {
-    const updatedCart = cart.filter((item) => item.id !== itemId);
-    saveCart(updatedCart);
+    setCart(prevCart => prevCart.filter((item) => item.id !== itemId));
   };
 
   const updateQuantity = (itemId: string, quantity: number) => {
     if (quantity < 1) {
       removeFromCart(itemId);
     } else {
-      const updatedCart = cart.map((item) =>
+      setCart(prevCart => prevCart.map((item) =>
         item.id === itemId ? { ...item, quantity } : item
-      );
-      saveCart(updatedCart);
+      ));
     }
   };
   
   const clearCart = () => {
-    saveCart([]);
+    setCart([]);
   };
 
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
