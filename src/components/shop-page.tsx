@@ -9,9 +9,11 @@ import {
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const products = [
   {
+    slug: "raw-pyrite-bracelet",
     name: "1 Mukhi Rudraksha Bracelet",
     originalPrice: "15,000.00",
     price: "9,600.00",
@@ -22,6 +24,7 @@ const products = [
     imageHint: "rudraksha bracelet"
   },
   {
+    slug: "raw-pyrite-bracelet",
     name: "5 Mukhi Copper Rudraksha",
     originalPrice: "996.00",
     price: "690.00",
@@ -32,6 +35,7 @@ const products = [
     imageHint: "copper rudraksha"
   },
   {
+    slug: "raw-pyrite-bracelet",
     name: "Silver Rudraksha Bracelet",
     originalPrice: "12,000.00",
     price: "10,920.00",
@@ -42,6 +46,7 @@ const products = [
     imageHint: "silver bracelet"
   },
   {
+    slug: "raw-pyrite-bracelet",
     name: "Mala Rudraksha Beads",
     originalPrice: "1,500.00",
     price: "1,035.00",
@@ -56,7 +61,7 @@ const products = [
 const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
   return (
     <div className="bg-card text-card-foreground rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-      <div className="relative group">
+      <Link href={`/shop/${product.slug}`} className="relative group block">
         <Image
           src={product.image}
           alt={product.name}
@@ -75,11 +80,11 @@ const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
           <Button variant="outline" size="icon" className="bg-white/80 backdrop-blur-sm hover:bg-white w-9 h-9">
             <Heart className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="icon" className="bg-white/80 backdrop-blur-sm hover:bg-white w-9 h-9">
+           <Button variant="outline" size="icon" className="bg-white/80 backdrop-blur-sm hover:bg-white w-9 h-9">
             <GitCompareArrows className="h-4 w-4" />
           </Button>
         </div>
-      </div>
+      </Link>
       <div className="p-4">
         <h3 className="font-semibold text-base truncate">{product.name}</h3>
         <div className="flex items-center mt-1">
