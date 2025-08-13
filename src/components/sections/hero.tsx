@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="w-full py-6 md:py-8">
+    <section className="hidden w-full py-6 md:block md:py-8">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="relative rounded-lg bg-primary text-black overflow-hidden">
           <div className="absolute -top-1/4 -right-1/4 w-1/2 h-full bg-primary-foreground/10 rounded-full opacity-50"></div>
