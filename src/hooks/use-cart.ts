@@ -73,11 +73,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     } else {
       saveCart([...cart, { ...item, quantity: 1 }]);
     }
+    setIsCartOpen(true);
     toast({
         title: "Added to cart!",
         description: `${item.name} has been added to your cart.`,
     });
-    setIsCartOpen(true);
   };
 
   const removeFromCart = (itemId: string) => {
