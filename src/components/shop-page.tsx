@@ -73,9 +73,6 @@ const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
         </Badge>
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <Button variant="outline" size="icon" className="bg-white/80 backdrop-blur-sm hover:bg-white w-9 h-9">
-            <ShoppingCart className="h-4 w-4" />
-          </Button>
-          <Button variant="outline" size="icon" className="bg-white/80 backdrop-blur-sm hover:bg-white w-9 h-9">
             <Heart className="h-4 w-4" />
           </Button>
           <Button variant="outline" size="icon" className="bg-white/80 backdrop-blur-sm hover:bg-white w-9 h-9">
