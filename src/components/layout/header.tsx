@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, Phone } from "lucide-react";
+import { Menu, Phone, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -11,10 +11,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Logo } from "@/components/logo";
+import { Badge } from "../ui/badge";
 
 const navLinks = [
   { href: "#features", label: "Features" },
   { href: "/astrologers", label: "Astrologers" },
+  { href: "/shop", label: "Shop" },
   { href: "/#daily-horoscope", label: "Daily Horoscope" },
   { href: "/quick", label: "Quick" },
 ];
@@ -75,6 +77,12 @@ export function Header() {
             <Button variant="ghost" size="icon" className="text-black hover:bg-white/20">
                 <Phone />
             </Button>
+             <div className="relative">
+                <Button variant="ghost" size="icon" className="text-black hover:bg-white/20">
+                    <ShoppingBag />
+                </Button>
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center rounded-full bg-red-500 text-white p-0 text-xs">0</Badge>
+            </div>
         </div>
       </div>
     </header>
