@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { HelpBot } from "@/components/help-bot";
 import { MobileNav } from "@/components/layout/mobile-nav";
-import { CartProvider } from "@/hooks/use-cart";
+import { CartProvider } from "@/hooks/use-cart.tsx";
 
 export const metadata: Metadata = {
   title: "AstroBarta - Your Gateway to Trusted Astrologers",
