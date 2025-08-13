@@ -46,7 +46,7 @@ export function Expertise() {
   return (
     <section id="expertise" className="bg-background pt-8 pb-16 sm:pt-12 sm:pb-24">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="mb-12 flex items-center justify-between">
+        <div className="mb-12 hidden sm:flex items-center justify-between">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Expertise
           </h2>
