@@ -77,10 +77,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       }
       return updatedCart;
     });
-    toast({
-        title: "Added to cart!",
-        description: `${item.name} has been added to your cart.`,
-    });
+    // toast({
+    //     title: "Added to cart!",
+    //     description: `${item.name} has been added to your cart.`,
+    // });
     setIsCartOpen(true);
   };
 
