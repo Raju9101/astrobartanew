@@ -1,8 +1,8 @@
 
-// This is a new file created by App Prototyper.
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, createContext, useContext } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export interface CartItem {
   id: string;
@@ -12,9 +12,32 @@ export interface CartItem {
   quantity: number;
 }
 
+interface CartContextType {
+    cart: CartItem[];
+    addToCart: (item: CartItem) => void;
+    removeFromCart: (itemId: string) => void;
+    updateQuantity: (itemId: string, quantity: number) => void;
+    clearCart: () => void;
+    subtotal: number;
+    isCartOpen: boolean;
+    setIsCartOpen: (isOpen: boolean) => void;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
 export const useCart = () => {
+    const context = useContext(CartContext);
+    if (!context) {
+        throw new Error("useCart must be used within a CartProvider");
+    }
+    return context;
+};
+
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isMounted, setIsMounted] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     setIsMounted(true);
@@ -50,6 +73,11 @@ export const useCart = () => {
     } else {
       saveCart([...cart, { ...item, quantity: 1 }]);
     }
+    toast({
+        title: "Added to cart!",
+        description: `${item.name} has been added to your cart.`,
+    });
+    setIsCartOpen(true);
   };
 
   const removeFromCart = (itemId: string) => {
@@ -74,12 +102,20 @@ export const useCart = () => {
 
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  return {
+  const value = {
     cart: isMounted ? cart : [],
     addToCart,
     removeFromCart,
     updateQuantity,
     clearCart,
-    subtotal
+    subtotal,
+    isCartOpen,
+    setIsCartOpen
   };
+  
+  return (
+    <CartContext.Provider value={value}>
+        {children}
+    </CartContext.Provider>
+  );
 };

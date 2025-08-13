@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { HelpBot } from "@/components/help-bot";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { CartProvider } from "@/hooks/use-cart";
 
 export const metadata: Metadata = {
   title: "AstroBarta - Your Gateway to Trusted Astrologers",
@@ -30,12 +31,14 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <div className="pb-16 md:pb-0">
-          {children}
-        </div>
-        <Toaster />
-        <HelpBot />
-        <MobileNav />
+        <CartProvider>
+          <div className="pb-16 md:pb-0">
+            {children}
+          </div>
+          <Toaster />
+          <HelpBot />
+          <MobileNav />
+        </CartProvider>
       </body>
     </html>
   );

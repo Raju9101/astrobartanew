@@ -73,7 +73,6 @@ export function ProductDetailPage({ product }: { product: Product }) {
   const [current, setCurrent] = useState(0);
   const [mainCurrent, setMainCurrent] = useState(0);
 
-  const { toast } = useToast();
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
@@ -85,10 +84,6 @@ export function ProductDetailPage({ product }: { product: Product }) {
       quantity: 1,
     };
     addToCart(item);
-    toast({
-      title: "Added to cart!",
-      description: `${product.name} has been added to your cart.`,
-    });
   };
 
   const onThumbClick = useCallback(
