@@ -96,10 +96,10 @@ const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
           <span className="text-xs text-muted-foreground ml-1.5">({product.reviews} Reviews)</span>
         </div>
         <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-sm text-muted-foreground line-through">
+            <span className="text-xs sm:text-sm text-muted-foreground line-through">
                 Rs. {product.originalPrice}
             </span>
-            <span className="text-lg font-bold text-red-600">
+            <span className="text-base sm:text-lg font-bold text-red-600">
                 Rs. {product.price}
             </span>
         </div>
