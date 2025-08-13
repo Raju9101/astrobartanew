@@ -13,7 +13,12 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
 import { cn } from "@/lib/utils";
 
 const productImages = [
@@ -90,7 +95,7 @@ export function ProductDetailPage({ product }: { product: Product }) {
 
   return (
     <>
-      <div className="container mx-auto max-w-6xl px-4 pb-24 md:pb-0">
+      <div className="container mx-auto max-w-6xl px-4 pb-24 md:pb-8">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Gallery */}
           <div className="grid gap-4">
@@ -190,6 +195,27 @@ export function ProductDetailPage({ product }: { product: Product }) {
               </Button>
             </div>
           </div>
+        </div>
+        <div className="mt-12">
+          <Tabs defaultValue="description" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="description">Description</TabsTrigger>
+              <TabsTrigger value="reviews">Reviews</TabsTrigger>
+            </TabsList>
+            <TabsContent value="description" className="mt-4 text-muted-foreground">
+              <div className="prose prose-sm max-w-none text-muted-foreground">
+                  <p>This is a placeholder description for the {product.name}. Replace this with the actual product details. It should be informative and highlight the key features and benefits of the product.</p>
+                  <ul className="list-disc list-inside mt-4 space-y-2">
+                      <li>Feature one about the product.</li>
+                      <li>Another great feature.</li>
+                      <li>And one more for good measure.</li>
+                  </ul>
+              </div>
+            </TabsContent>
+            <TabsContent value="reviews" className="mt-4">
+               <p className="text-muted-foreground">No reviews yet.</p>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
       {/* Mobile Sticky Buttons */}
