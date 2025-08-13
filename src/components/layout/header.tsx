@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -12,6 +13,9 @@ import {
 } from "@/components/ui/sheet";
 import { Logo } from "@/components/logo";
 import { Badge } from "../ui/badge";
+import { useCart } from "@/hooks/use-cart";
+import { CartDrawer } from "../cart-drawer";
+
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -23,6 +27,8 @@ const navLinks = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cart } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-primary text-primary-foreground">
@@ -78,10 +84,17 @@ export function Header() {
                 <Phone />
             </Button>
              <div className="relative">
-                <Button variant="ghost" size="icon" className="text-black hover:bg-white/20">
+                <CartDrawer open={isCartOpen} onOpenChange={setIsCartOpen}>
+                    <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-black hover:bg-white/20"
+                    onClick={() => setIsCartOpen(true)}
+                    >
                     <ShoppingBag />
-                </Button>
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center rounded-full bg-red-500 text-white p-0 text-xs">0</Badge>
+                    </Button>
+                </CartDrawer>
+                {cart.length > 0 && <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center rounded-full bg-red-500 text-white p-0 text-xs">{cart.length}</Badge>}
             </div>
         </div>
       </div>

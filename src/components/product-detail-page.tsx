@@ -1,3 +1,4 @@
+
 // This is a new file created by App Prototyper.
 "use client";
 
@@ -20,6 +21,8 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils";
+import { useCart } from "@/hooks/use-cart";
+import { useToast } from "@/hooks/use-toast";
 
 const productImages = [
   {
@@ -69,6 +72,24 @@ export function ProductDetailPage({ product }: { product: Product }) {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [mainCurrent, setMainCurrent] = useState(0);
+
+  const { toast } = useToast();
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    const item = {
+      id: product.slug,
+      name: product.name,
+      price: 699,
+      image: productImages[0].src,
+      quantity: 1,
+    };
+    addToCart(item);
+    toast({
+      title: "Added to cart!",
+      description: `${product.name} has been added to your cart.`,
+    });
+  };
 
   const onThumbClick = useCallback(
     (index: number) => {
@@ -184,6 +205,7 @@ export function ProductDetailPage({ product }: { product: Product }) {
               <Button
                 size="lg"
                 className="w-full bg-black text-white hover:bg-black/80 text-base h-12"
+                onClick={handleAddToCart}
               >
                 ADD TO CART
               </Button>
@@ -224,6 +246,7 @@ export function ProductDetailPage({ product }: { product: Product }) {
             <Button
               size="lg"
               className="w-full bg-black text-white hover:bg-black/80 text-base h-12"
+              onClick={handleAddToCart}
             >
               ADD TO CART
             </Button>
