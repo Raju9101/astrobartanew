@@ -61,13 +61,13 @@ export function Astrologers() {
           <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">Meet Our Top Astrologers</h2>
           <p className="mt-4 text-lg text-foreground/60">Experts ready to guide you on your journey.</p>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 min-h-[300px]">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 min-h-[300px]">
           {loading ? (
-            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center">
+            <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex justify-center items-center">
               <Loader2 className="h-12 w-12 animate-spin text-primary" />
             </div>
           ) : error ? (
-            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center">
+            <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex justify-center items-center">
                <p className="text-lg text-destructive">{error}</p>
             </div>
           ) : astrologers.length > 0 ? (
@@ -140,7 +140,7 @@ export function Astrologers() {
                   </Card>
               )})
           ) : (
-            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center">
+            <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex justify-center items-center">
               <p className="text-lg text-muted-foreground">No astrologers found.</p>
             </div>
           )}
