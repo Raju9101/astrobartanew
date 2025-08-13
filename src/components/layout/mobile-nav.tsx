@@ -33,7 +33,7 @@ export function MobileNav() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border/40 bg-background/80 p-2 backdrop-blur supports-[backdrop-filter]:bg-background/50 md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border/40 bg-primary p-2 md:hidden">
       <nav className="grid grid-cols-4 items-center justify-items-center gap-1 text-xs">
         {navItems.map((item) => {
           const isActive = (pathname === '/' && item.href === '/') || (item.href !== '/' && pathname.startsWith(item.href) && item.href !== '/#daily-horoscope');
@@ -44,8 +44,8 @@ export function MobileNav() {
               className={cn(
                 'flex flex-col items-center justify-center gap-1 rounded-md p-2 transition-colors duration-200 w-full',
                 isActive
-                  ? 'text-primary'
-                  : 'text-muted-foreground hover:text-primary'
+                  ? 'text-black font-semibold'
+                  : 'text-black/70 hover:text-black'
               )}
             >
               <item.icon className="h-5 w-5" />
