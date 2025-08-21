@@ -40,7 +40,7 @@ interface Astrologer {
 
 async function getAstrologer(name: string): Promise<Astrologer | undefined> {
   try {
-    const apiKey = process.env.NEXT_PUBLIC_ASTROBARTA_API_KEY;
+    const apiKey = "141105";
     const url = `https://api.astrobarta.com/get_astrologer.php${apiKey ? `?api_key=${apiKey}` : ''}`;
     const res = await fetch(url, {
       cache: "no-store",
