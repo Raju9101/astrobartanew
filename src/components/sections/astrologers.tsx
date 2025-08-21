@@ -31,7 +31,7 @@ export function Astrologers() {
       try {
         setLoading(true);
         setError(null);
-        const apiKey = "141105";
+        const apiKey = "ee54848dsqwdeeegdeeffg654987545564%%";
         const url = `https://api.astrobarta.com/get_astrologer.php${apiKey ? `?api_key=${apiKey}` : ''}`;
         const res = await fetch(url, {
           cache: 'no-store' 

@@ -78,7 +78,7 @@ export async function createBooking(
   }
 
   try {
-    const apiKey = "141105";
+    const apiKey = "ee54848dsqwdeeegdeeffg654987545564%%";
     const url = `https://api.astrobarta.com/create_booking.php${apiKey ? `?api_key=${apiKey}` : ''}`;
     const res = await fetch(
       url,
@@ -164,7 +164,7 @@ export async function createCallRequest(
   const requestData = { ...rest, phone: phone_number };
 
   try {
-    const apiKey = "141105";
+    const apiKey = "ee54848dsqwdeeegdeeffg654987545564%%";
     const url = `https://api.astrobarta.com/api_call_request.php${apiKey ? `?api_key=${apiKey}` : ''}`;
     const res = await fetch(url, {
       method: 'POST',
