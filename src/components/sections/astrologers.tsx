@@ -37,13 +37,20 @@ export function Astrologers() {
           cache: 'no-store' 
         });
         if (!res.ok) {
-           throw new Error(`Failed to fetch astrologers: ${res.statusText}`);
+           // Instead of throwing, we set an error state to be displayed in the UI.
+           setError(`Failed to fetch astrologers: ${res.statusText}`);
+           setAllAstrologers([]);
+           return;
         }
         const data = await res.json();
         setAllAstrologers(data.data || []);
-      } catch (error) {
-        console.error('Error fetching astrologers:', error);
-        setError("Our cosmic signals are weak. Please try again later.");
+      } catch (e) {
+        console.error('Error fetching astrologers:', e);
+        if (e instanceof Error) {
+            setError(e.message);
+        } else {
+            setError("An unknown error occurred. Our cosmic signals are weak.");
+        }
         setAllAstrologers([]);
       } finally {
         setLoading(false);
