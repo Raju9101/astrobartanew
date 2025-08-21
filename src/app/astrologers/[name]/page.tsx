@@ -1,3 +1,4 @@
+
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -38,20 +39,26 @@ interface Astrologer {
 }
 
 async function getAstrologer(name: string): Promise<Astrologer | undefined> {
-  const apiKey = process.env.NEXT_PUBLIC_ASTROBARTA_API_KEY;
-  const url = `https://api.astrobarta.com/get_astrologer.php${apiKey ? `?api_key=${apiKey}` : ''}`;
-  const res = await fetch(url, {
-    cache: "no-store",
-  });
+  try {
+    const apiKey = process.env.NEXT_PUBLIC_ASTROBARTA_API_KEY;
+    const url = `https://api.astrobarta.com/get_astrologer.php${apiKey ? `?api_key=${apiKey}` : ''}`;
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    // This will be caught by the error boundary and show the error.tsx file.
-    throw new Error("Failed to fetch astrologer data from the cosmic servers.");
+    if (!res.ok) {
+      console.error("Failed to fetch astrologer data:", res.statusText);
+      // Instead of throwing, we let it proceed, and it will result in a notFound() later.
+      return undefined;
+    }
+    
+    const data = await res.json();
+    const astrologers: Astrologer[] = data.data || [];
+    return astrologers.find((astro) => astro.name === name);
+  } catch (error) {
+    console.error("Error fetching astrologer:", error);
+    return undefined;
   }
-  
-  const data = await res.json();
-  const astrologers: Astrologer[] = data.data || [];
-  return astrologers.find((astro) => astro.name === name);
 }
 
 export default async function AstrologerProfilePage({
