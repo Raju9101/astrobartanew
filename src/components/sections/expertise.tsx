@@ -59,10 +59,10 @@ export function Expertise() {
             <Link
               href={`/astrologers/expertise/${encodeURIComponent(item.title)}`}
               key={item.title}
-              className="group flex cursor-pointer flex-col items-center gap-4"
+              className="group flex cursor-pointer flex-col items-center gap-3 sm:gap-4"
             >
-              <div className="flex h-24 w-24 items-center justify-center rounded-xl bg-card p-1 shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
-                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/90">
+              <div className="flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-xl bg-card p-1 shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
+                 <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-primary/90">
                     <item.icon className="h-8 w-8 text-black transition-transform duration-300 group-hover:scale-110" />
                 </div>
               </div>
