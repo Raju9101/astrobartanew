@@ -64,11 +64,11 @@ export function Astrologers() {
   return (
     <section id="astrologers" className="bg-background pt-8 pb-12 sm:pt-12 sm:pb-16">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">Meet Our Top Astrologers</h2>
-          <p className="mt-4 text-lg text-foreground/60">Experts ready to guide you on your journey.</p>
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-headline font-bold tracking-tighter sm:text-3xl">Meet Our Top Astrologers</h2>
+          <p className="mt-3 text-base text-foreground/60">Experts ready to guide you on your journey.</p>
         </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 min-h-[300px]">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 min-h-[300px]">
           {loading ? (
             <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex justify-center items-center">
               <Loader2 className="h-12 w-12 animate-spin text-primary" />
