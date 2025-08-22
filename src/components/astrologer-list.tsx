@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -191,8 +192,7 @@ export function AstrologerList() {
                         astrologer={astrologer}
                         trigger={
                           <Button
-                              variant="outline"
-                              className="w-full text-foreground border-primary hover:bg-primary/10"
+                              className="w-full"
                             >
                               <CalendarDays className="mr-2 h-4 w-4" />
                               Book
