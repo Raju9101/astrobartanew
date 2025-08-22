@@ -32,9 +32,15 @@ interface Astrologer {
   profile_image: string;
 }
 
+interface DisplayAstrologer extends Astrologer {
+    rating: string;
+    reviews: number;
+    isOnline: boolean;
+}
+
 export function AstrologerList() {
-  const [astrologers, setAstrologers] = useState<Astrologer[]>([]);
-  const [filteredAstrologers, setFilteredAstrologers] = useState<Astrologer[]>(
+  const [astrologers, setAstrologers] = useState<DisplayAstrologer[]>([]);
+  const [filteredAstrologers, setFilteredAstrologers] = useState<DisplayAstrologer[]>(
     []
   );
   const [searchQuery, setSearchQuery] = useState("");
@@ -59,9 +65,17 @@ export function AstrologerList() {
           return;
         }
         const data = await res.json();
-        const astrologerData = data.data || [];
-        setAstrologers(astrologerData);
-        setFilteredAstrologers(astrologerData);
+        const astrologerData: Astrologer[] = data.data || [];
+        
+        const displayData = astrologerData.map(astro => ({
+            ...astro,
+            rating: (4.5 + Math.random() * 0.5).toFixed(1),
+            reviews: Math.floor(Math.random() * 1500) + 500,
+            isOnline: Math.random() > 0.4
+        }));
+
+        setAstrologers(displayData);
+        setFilteredAstrologers(displayData);
       } catch (error) {
         console.error("Error fetching astrologers:", error);
         setAstrologers([]);
@@ -115,10 +129,6 @@ export function AstrologerList() {
         ) : filteredAstrologers.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredAstrologers.map((astrologer) => {
-              const rating = (4.5 + Math.random() * 0.5).toFixed(1);
-              const reviews = Math.floor(Math.random() * 1500) + 500;
-              const isOnline = Math.random() > 0.4;
-
               return (
                 <Card
                   key={astrologer.id}
@@ -138,7 +148,7 @@ export function AstrologerList() {
                                 {astrologer.name.charAt(0)}
                               </AvatarFallback>
                             </Avatar>
-                            {isOnline && (
+                            {astrologer.isOnline && (
                               <div
                                 className="absolute top-1 right-1 w-4 h-4 bg-green-500 border-2 border-background rounded-full"
                                 title="Online"
@@ -150,7 +160,7 @@ export function AstrologerList() {
                             className="mt-2 text-xs font-medium"
                           >
                             <Star className="w-3.5 h-3.5 mr-1 text-primary fill-current" />
-                            {rating} | {reviews}
+                            {astrologer.rating} | {astrologer.reviews}
                           </Badge>
                         </div>
                         <div className="flex flex-col gap-1 pt-1 flex-1 min-w-0">
@@ -202,7 +212,6 @@ export function AstrologerList() {
                       <CallRequestDialog
                         trigger={
                           <Button
-                            variant="outline"
                             className="w-full text-foreground border-primary hover:bg-primary/10"
                           >
                             <Phone className="mr-2 h-4 w-4" />

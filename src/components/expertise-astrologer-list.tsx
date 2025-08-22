@@ -30,6 +30,12 @@ interface Astrologer {
   profile_image: string;
 }
 
+interface DisplayAstrologer extends Astrologer {
+    rating: string;
+    reviews: number;
+    isOnline: boolean;
+}
+
 interface ExpertiseAstrologerListProps {
   expertise: string;
 }
@@ -37,8 +43,8 @@ interface ExpertiseAstrologerListProps {
 export function ExpertiseAstrologerList({
   expertise,
 }: ExpertiseAstrologerListProps) {
-  const [allAstrologers, setAllAstrologers] = useState<Astrologer[]>([]);
-  const [filteredAstrologers, setFilteredAstrologers] = useState<Astrologer[]>(
+  const [allAstrologers, setAllAstrologers] = useState<DisplayAstrologer[]>([]);
+  const [filteredAstrologers, setFilteredAstrologers] = useState<DisplayAstrologer[]>(
     []
   );
   const [loading, setLoading] = useState(true);
@@ -61,7 +67,14 @@ export function ExpertiseAstrologerList({
         }
         const data = await res.json();
         const astrologerData: Astrologer[] = data.data || [];
-        setAllAstrologers(astrologerData);
+        
+        const displayData = astrologerData.map(astro => ({
+            ...astro,
+            rating: (4.5 + Math.random() * 0.5).toFixed(1),
+            reviews: Math.floor(Math.random() * 1500) + 500,
+            isOnline: Math.random() > 0.4
+        }));
+        setAllAstrologers(displayData);
       } catch (error) {
         console.error("Error fetching astrologers:", error);
       } finally {
@@ -103,9 +116,6 @@ export function ExpertiseAstrologerList({
         ) : filteredAstrologers.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredAstrologers.map((astrologer) => {
-              const rating = (4.5 + Math.random() * 0.5).toFixed(1);
-              const reviews = Math.floor(Math.random() * 1500) + 500;
-              const isOnline = Math.random() > 0.4;
 
               return (
                 <Card
@@ -131,7 +141,7 @@ export function ExpertiseAstrologerList({
                                 {astrologer.name.charAt(0)}
                               </AvatarFallback>
                             </Avatar>
-                            {isOnline && (
+                            {astrologer.isOnline && (
                               <div
                                 className="absolute top-1 right-1 w-4 h-4 bg-green-500 border-2 border-background rounded-full"
                                 title="Online"
@@ -143,7 +153,7 @@ export function ExpertiseAstrologerList({
                             className="mt-2 text-xs font-medium"
                           >
                             <Star className="w-3.5 h-3.5 mr-1 text-primary fill-current" />
-                            {rating} | {reviews}
+                            {astrologer.rating} | {astrologer.reviews}
                           </Badge>
                         </div>
                         <div className="flex flex-col gap-1 pt-1 flex-1 min-w-0">
@@ -195,7 +205,6 @@ export function ExpertiseAstrologerList({
                         <CallRequestDialog
                           trigger={
                             <Button
-                                variant="outline"
                                 className="w-full text-foreground border-primary hover:bg-primary/10"
                               >
                                 <Phone className="mr-2 h-4 w-4" />
